@@ -52,11 +52,15 @@ def research_locus():
         'LINE-1 and a distant target gene',
         'A conceptual genome track connects an active LINE-1 element with a distant target '
         'gene through a long-range chromatin contact. The diagram has no genomic coordinates.',
-        '''<path class="locus-arc is-emphasized" data-locus-feature="line1 contact gene"
-          role="button" tabindex="0" data-locus-focus="contact" aria-pressed="false"
-          aria-label="Explore the long-range contact"
+        '''<g class="locus-contact" role="button" tabindex="0"
+          data-locus-focus="contact" aria-pressed="false"
+          aria-label="Explore the long-range contact">
+        <path class="locus-contact-hit" aria-hidden="true"
+          d="M 122 160 C 166 40, 374 40, 420 160" />
+        <path class="locus-arc is-emphasized" data-locus-feature="line1 contact gene"
           d="M 122 160 C 166 40, 374 40, 420 160" fill="none" />
         <text class="locus-diagram-label" x="280" y="42" text-anchor="middle">Long-range contact</text>
+        </g>
         <g class="locus-element is-emphasized" data-locus-feature="line1"
           role="button" tabindex="0" data-locus-focus="line1" aria-pressed="true"
           aria-label="Explore LINE-1">
