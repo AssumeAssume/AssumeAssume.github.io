@@ -1,0 +1,7 @@
+_site/
+__pycache__/
+.DS_Store
+*.log
+CV_from_MSCA.docx
+CV_from_MSCA.pdf
+academic-website-source.zip

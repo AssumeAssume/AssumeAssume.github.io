@@ -1,0 +1,145 @@
+{
+  "name": "Xiufeng Li",
+  "initials": "XL",
+  "role": "Postdoctoral fellow",
+  "affiliation": "VIB Center for AI & Computational Biology",
+  "supervisor": "Stein Aerts",
+  "theme": "editorial",
+  "site_url": "https://assumeassume.github.io",
+  "updated": "2026-10-02",
+  "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
+  "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
+  "about": "I am a postdoctoral fellow at the VIB Center for AI & Computational Biology, working with Stein Aerts. I completed my PhD in Bioinformatics at Tsinghua University with Nian Liu, where I studied LINE-1-mediated gene activation and the regulation of hypertranscribed genes.",
+  "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
+  "links": [
+    {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
+    {"label": "GitHub", "url": "https://github.com/AssumeAssume"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com/in/xiufeng-li-68822014b/"}
+  ],
+  "research": [
+    {
+      "title": "Transposable elements as regulators",
+      "label": "LINE-1 · long-range regulation",
+      "text": "I investigated how LINE-1 transcription promotes chromatin contacts and activates distal genes, linking transposable elements to gene regulation and zygotic genome activation.",
+      "publication": "line1",
+      "methods": ["CRISPR screens", "Chromatin contacts", "Multi-omics"]
+    },
+    {
+      "title": "Safeguarding hypertranscribed genes",
+      "label": "ANKRD11 · transcriptional control",
+      "text": "I developed the hypertranscribed-gene analytical framework and integrated genomic datasets to study how ANKRD11 condensates restrain transcription at highly expressed developmental loci.",
+      "publication": "ankrd11",
+      "methods": ["Nascent transcription", "Integrative genomics", "Development"]
+    },
+    {
+      "title": "Interpretable models of gene regulation",
+      "label": "Current direction",
+      "text": "I aim to combine mechanistic regulatory genomics with interpretable AI to understand how distributed cis-regulatory information determines gene expression across cell states.",
+      "publication": "",
+      "methods": ["Regulatory genomics", "Interpretable AI", "Enhancers"]
+    }
+  ],
+  "news": [
+    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology as a postdoctoral fellow with Stein Aerts.", "url": ""},
+    {"date": "2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
+    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"}
+  ],
+  "publications": [
+    {
+      "id": "ankrd11",
+      "title": "Condensates of the chromatin regulator ANKRD11 restrict hypertranscribed genes to safeguard development",
+      "authors": ["Tao Zhang", "Xiufeng Li", "Wei Zhou", "Zhao-lu Li", "Jundong Bi", "Xin Ma", "Xiang Li", "Yiming Fan", "Yaqiang Hong", "Shiqi Wang", "Yankun Wang", "Le Yang", "Yongxing Chen", "Wei Qin", "Haifeng Wang", "Qiaoran Xi", "Songhai Shi", "Nian Liu"],
+      "display_authors": "Tao Zhang*, Xiufeng Li*, Wei Zhou, et al.",
+      "journal": "Cell",
+      "year": 2026,
+      "doi": "10.1016/j.cell.2026.07.006",
+      "url": "https://doi.org/10.1016/j.cell.2026.07.006",
+      "code": "",
+      "note": "Co-first author",
+      "equal_contribution": true,
+      "summary": "ANKRD11 condensates restrain hypertranscribed regions and safeguard transcriptional control during development.",
+      "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework."
+    },
+    {
+      "id": "line1-review",
+      "title": "Advances in understanding LINE-1 regulation and function in the human genome",
+      "authors": ["Xiufeng Li", "Nian Liu"],
+      "display_authors": "Xiufeng Li, Nian Liu",
+      "journal": "Trends in Genetics",
+      "year": 2025,
+      "volume": "41",
+      "pages": "577–589",
+      "doi": "10.1016/j.tig.2025.04.011",
+      "url": "https://doi.org/10.1016/j.tig.2025.04.011",
+      "code": "",
+      "note": "First author · Cover article",
+      "equal_contribution": false,
+      "summary": "A synthesis of LINE-1 regulation and its roles in genome organization, development and disease.",
+      "contribution": "I conceived and wrote the review, synthesized the literature, and developed its conceptual framework and figures.",
+      "image": "tig-cover.jpg",
+      "image_credit": "Trends in Genetics · Volume 41, Issue 7 · July 2025 · Cell Press"
+    },
+    {
+      "id": "line1",
+      "title": "LINE-1 transcription activates long-range gene expression",
+      "authors": ["Xiufeng Li", "Luyao Bie", "Yang Wang", "Yaqiang Hong", "Ziqiang Zhou", "Yiming Fan", "Xiaohan Yan", "Yibing Tao", "Chunyi Huang", "Yongyan Zhang", "Xueyan Sun", "John Xiao He Li", "Jing Zhang", "Zai Chang", "Qiaoran Xi", "Anming Meng", "Xiaohua Shen", "Wei Xie", "Nian Liu"],
+      "display_authors": "Xiufeng Li*, Luyao Bie*, Yang Wang*, Yaqiang Hong*, et al.",
+      "journal": "Nature Genetics",
+      "year": 2024,
+      "volume": "56",
+      "pages": "1494–1502",
+      "doi": "10.1038/s41588-024-01789-5",
+      "url": "https://www.nature.com/articles/s41588-024-01789-5",
+      "code": "https://github.com/AssumeAssume/Li_et_al_2024",
+      "note": "Co-first author",
+      "equal_contribution": true,
+      "summary": "Active LINE-1 elements promote long-range chromatin contacts and distal gene activation, including during zygotic genome activation.",
+      "contribution": "I led the computational and conceptual development, integrating genomic analyses into the mechanistic framework."
+    },
+    {
+      "id": "safb",
+      "title": "SAFB restricts contact domain boundaries associated with L1 chimeric transcription",
+      "authors": ["Yaqiang Hong", "Luyao Bie", "Tao Zhang", "Xiaohan Yan", "Guangpu Jin", "Zhuo Chen", "Yang Wang", "Xiufeng Li", "Gaofeng Pei", "Yongyan Zhang", "Yantao Hong", "Liang Gong", "Xiaohua Shen", "Pilong Li", "Wei Xie", "Yanfen Zhu", "Nian Liu"],
+      "display_authors": "Yaqiang Hong*, Luyao Bie*, Tao Zhang*, et al., including Xiufeng Li",
+      "journal": "Molecular Cell",
+      "year": 2024,
+      "doi": "",
+      "url": "",
+      "code": "",
+      "note": "Co-author",
+      "equal_contribution": true,
+      "summary": "SAFB constrains chromatin contact-domain boundaries associated with L1 chimeric transcription.",
+      "contribution": "I contributed genomic analyses and interpretation of the genomic results."
+    }
+  ],
+  "positions": [
+    {"period": "Sep 2026 — present", "title": "Postdoctoral fellow", "institution": "VIB Center for AI & Computational Biology", "detail": "Supervisor: Stein Aerts"},
+    {"period": "Jan 2025 — Aug 2026", "title": "Research assistant", "institution": "Tsinghua University", "detail": "Supervisor: Nian Liu"}
+  ],
+  "education": [
+    {"period": "2019 — 2024", "title": "PhD in Bioinformatics", "institution": "Tsinghua University", "detail": "Supervisor: Nian Liu"},
+    {"period": "2015 — 2019", "title": "BS in Bioinformatics", "institution": "Dalian University of Technology", "detail": "Supervisor: Mingkun Li"}
+  ],
+  "awards": [
+    {"year": "2024", "title": "Zhou Chuan Memorial Scholarship"},
+    {"year": "2023", "title": "National Scholarship for Doctoral Students"},
+    {"year": "2019", "title": "Outstanding Graduate, Dalian University of Technology"},
+    {"year": "2017", "title": "National Scholarship for Undergraduate Students"}
+  ],
+  "presentations": [
+    {"year": "2024", "title": "Cell Symposia: Functional RNAs", "detail": "Poster and poster teaser presentation"},
+    {"year": "2024", "title": "Chinese Genomics online Meet-up", "detail": "Invited talk"},
+    {"year": "2024", "title": "19th SCBA / 14th CBIS Biennial Symposium", "detail": "Poster award"},
+    {"year": "2024", "title": "Frontiers in Biological Structures", "detail": "Poster"},
+    {"year": "2023", "title": "Life Sciences, Basic Medicine and Pharmaceutical Science Forum, Tsinghua University", "detail": "Excellent speaker"}
+  ],
+  "teaching": [
+    "Contributed to undergraduate teaching and practical training in the Functional Genomics Course at Tsinghua University.",
+    "Organized in-house workshops and hands-on bioinformatics training at Tsinghua University.",
+    "Mentored doctoral students in computational genomics, bioinformatics workflows and AI-based genomic analysis."
+  ],
+  "service": [
+    "Early Career Researcher Reviewer, Nature Communications",
+    "Science communication on genomics, bioinformatics and academic training through WeChat and Xiaohongshu"
+  ]
+}
