@@ -8,6 +8,8 @@ import shutil
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
+from locus import research_locus
+from tool_demo import track_demo
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "_site"
@@ -33,11 +35,16 @@ def head(profile, prefix, title=None, lang="en", canonical="", robots="", styles
     metadata = f'<link rel="canonical" href="{esc(canonical)}">' if canonical else ""
     if robots:
         metadata += f'<meta name="robots" content="{esc(robots)}">'
+    if canonical:
+        metadata += f'<meta property="og:url" content="{esc(canonical)}">'
+    if profile.get("portrait") and profile["site_url"]:
+        portrait_url = profile["site_url"].rstrip("/") + "/assets/" + profile["portrait"]
+        metadata += f'<meta property="og:image" content="{esc(portrait_url)}"><meta property="og:image:alt" content="Portrait of {esc(profile["name"])}"><meta name="twitter:card" content="summary">'
     extra_styles = ''.join(f'<link rel="stylesheet" href="{prefix}assets/{esc(style)}">' for style in styles)
     return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title or profile['name'] + ' | Regulatory Genomics')}</title>
-<meta name="description" content="{esc(description)}"><meta name="theme-color" content="#183f3a">
+<meta name="description" content="{esc(description)}"><meta name="theme-color" content="#F6F4EE">
 <meta property="og:title" content="{esc(title or profile['name'])}"><meta property="og:description" content="{esc(description)}"><meta property="og:type" content="website">
 {metadata}<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{prefix}assets/site.css">{extra_styles}</head>'''
@@ -59,6 +66,10 @@ def biography(profile):
     paragraphs = profile["about"]
     if isinstance(paragraphs, str):
         paragraphs = [paragraphs]
+    return formatted_paragraphs(paragraphs)
+
+
+def formatted_paragraphs(paragraphs):
     rendered = []
     for paragraph in paragraphs:
         text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(paragraph))
@@ -135,33 +146,61 @@ def cover_feature(profile, prefix):
 <figcaption><span class="eyebrow">Featured review</span><span>Trends in Genetics · 2025</span><small>Cover image: Cell Press</small></figcaption></figure>'''
 
 
-def research_lenses():
-    diagrams = {
-        'line1': '''<svg viewBox="0 0 480 240" aria-hidden="true"><path class="genome-track" d="M28 165H452"/><path class="contact-arc" d="M106 154C115 16 353 16 374 154"/><rect class="locus-a" x="48" y="145" width="112" height="38" rx="3"/><rect class="locus-b" x="319" y="145" width="126" height="38" rx="3"/><text x="104" y="219" text-anchor="middle">LINE-1</text><text x="382" y="219" text-anchor="middle">Target gene</text><text class="diagram-label" x="240" y="31" text-anchor="middle">Long-range contact</text></svg>''',
-        'ankrd11': '''<svg viewBox="0 0 480 240" aria-hidden="true"><ellipse class="condensate" cx="240" cy="115" rx="159" ry="78"/><text x="240" y="78" text-anchor="middle">ANKRD11 condensate</text><path class="genome-track" d="M28 165H452"/><rect class="locus-b" x="113" y="149" width="254" height="33" rx="3"/><path class="transcription-mark" d="M142 116H189m-12-8 12 8-12 8M215 116H262m-12-8 12 8-12 8"/><path class="safeguard" d="M295 94V137"/><text class="diagram-label" x="240" y="220" text-anchor="middle">Hypertranscribed gene</text></svg>''',
-        'ai': '''<svg viewBox="0 0 480 240" aria-hidden="true"><path class="model-connection" d="M108 56 214 110M108 114H214M108 172 214 130M287 120H374"/><rect class="input-locus" x="34" y="39" width="76" height="34" rx="4"/><rect class="input-locus" x="34" y="97" width="76" height="34" rx="4"/><rect class="input-locus" x="34" y="155" width="76" height="34" rx="4"/><text x="72" y="64" text-anchor="middle">E1</text><text x="72" y="122" text-anchor="middle">E2</text><text x="72" y="180" text-anchor="middle">E3</text><rect class="regulatory-model" x="214" y="82" width="74" height="76" rx="6"/><text x="251" y="128" text-anchor="middle">AI</text><rect class="locus-b" x="374" y="104" width="74" height="34" rx="3"/><text class="diagram-label" x="74" y="225" text-anchor="middle">Enhancers</text><text class="diagram-label" x="250" y="203" text-anchor="middle">Interpretable</text><text class="diagram-label" x="250" y="227" text-anchor="middle">model</text><text class="diagram-label" x="411" y="79" text-anchor="middle">Gene</text></svg>''',
-    }
-    lenses = [
-        ('line1', 'LINE-1', 'Mobile DNA. Distal effects.', 'LINE-1 transcription promotes long-range chromatin contacts and distal gene activation.', 'Nature Genetics · 2024', '#pub-line1'),
-        ('ankrd11', 'ANKRD11', 'A safeguard for transcription.', 'ANKRD11 condensates restrict transcription at hypertranscribed developmental genes.', 'Cell · 2026', '#pub-ankrd11'),
-        ('ai', 'Regulatory AI', 'From mechanism to models.', 'My current direction: interpretable models of how cis-regulatory information shapes gene expression.', 'Research direction', '#research'),
-    ]
-    buttons, panels = '', ''
-    for i, (key, label, title, text, source, target) in enumerate(lenses):
-        buttons += f'<button id="lens-{key}" type="button" role="tab" aria-controls="lens-panel-{key}" aria-selected="{"true" if i == 0 else "false"}" tabindex="{0 if i == 0 else -1}" data-lens="{key}">{label}</button>'
-        panels += f'''<section id="lens-panel-{key}" class="lens-panel" role="tabpanel" aria-labelledby="lens-{key}" tabindex="0"{'' if i == 0 else ' hidden'}><div class="lens-figure">{diagrams[key]}</div><h2>{title}</h2><p>{text}</p><a class="lens-source" href="{target}">{source}</a></section>'''
-    return f'''<div class="research-lenses"><div class="lens-topline"><span>Research, in focus</span><span class="concept-label">Conceptual models</span></div><div class="lens-tabs" role="tablist" aria-label="Explore research themes">{buttons}</div>{panels}</div>'''
+def notebook_header(profile, prefix="", home=""):
+    return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="{home or '#about'}">{esc(profile['name'])}<span class="brand-note">research notes</span></a><nav aria-label="Main navigation"><a href="{home}#research">Selected work</a><a href="{home}#tools">Tools &amp; notes</a><a href="{home}#about-me">About</a><a href="{prefix}cv/">CV</a></nav></div></header>'''
 
 
-def editorial_cover(profile, prefix):
-    pub = next(p for p in profile['publications'] if p.get('image'))
-    return f'''<section class="editorial-cover" aria-labelledby="cover-story-title"><figure><a href="#pub-{esc(pub['id'])}"><img src="{prefix}assets/{esc(pub['image'])}" alt="Trends in Genetics cover showing a genomic landscape through the Great Wall of China" width="591" height="768" loading="lazy"></a><figcaption>{esc(pub['image_credit'])}</figcaption></figure><div class="cover-story"><p class="eyebrow">On the cover · July 2025</p><h2 id="cover-story-title">A broader view<br>of <em>LINE-1.</em></h2><p>Beyond retrotransposition, LINE-1 elements participate in genome regulation, chromatin organization and development. Our review brings these roles into a common conceptual framework.</p><p class="cover-authorship">Xiufeng Li &amp; Nian Liu<br><span>Trends in Genetics · First author</span></p><a class="cover-read" href="#pub-{esc(pub['id'])}">Read the review</a></div></section>'''
+def notebook_footer(profile):
+    github = next(link['url'] for link in profile['links'] if link['label'] == 'GitHub')
+    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span></footer>'
+
+
+def selected_work(profile, prefix):
+    papers = {p['id']: p for p in profile['publications']}
+    rows = ''
+    for story in profile['notebook']['selected_work']:
+        pub = papers[story['publication']]
+        authors = esc(pub['display_authors']).replace(esc(profile['name']), f'<strong>{esc(profile["name"])}</strong>')
+        actions = external(pub['url'], 'Paper ↗', 'notebook-link')
+        if pub['code']:
+            actions += external(pub['code'], 'Code ↗', 'notebook-link')
+        actions += f'<a class="notebook-link" href="{prefix}citations/{esc(pub["id"])}.bib" download>BibTeX</a>'
+        image = ''
+        if pub.get('image'):
+            image = f'<figure class="work-cover"><img src="{prefix}assets/{esc(pub["image"])}" alt="Trends in Genetics July 2025 cover showing a genomic landscape through the Great Wall" width="591" height="768" loading="lazy"><figcaption>July 2025 cover · Cell Press</figcaption></figure>'
+        rows += f'''<article id="pub-{esc(pub['id'])}" class="selected-study{' with-cover' if image else ''}"><div class="work-meta"><span>{pub['year']} / {esc(pub['journal'])}</span><span>{esc(pub['note'])}</span></div><div class="study-grid"><div class="study-question"><h3>{esc(story['title'])}</h3><p>{esc(story['question'])}</p>{image}</div><div class="study-result"><p class="finding">{esc(pub['summary'])}</p><p class="my-part"><strong>My part.</strong> {esc(pub['contribution'])}</p><div class="work-actions">{actions}</div><details class="publication-details"><summary>Publication details</summary><h4>{external(pub['url'], esc(pub['title']))}</h4><p>{authors}</p><p>{esc(pub['journal'])} · {pub['year']} · DOI: {esc(pub['doi'])}</p></details></div></div></article>'''
+    return f'''<section id="research" class="notebook-section selected-work"><div class="notebook-section-heading"><h2>Selected work</h2><p>Questions, discoveries, and my part in them.</p></div>{rows}<div id="publications" class="bibliography-link"><a class="notebook-link" href="{prefix}publications/">Complete publication list →</a><span>Full references and BibTeX</span></div></section>'''
+
+
+def notebook_about(profile, prefix):
+    paragraphs = [profile['notebook']['about_intro'], profile['about'][1]]
+    return f'''<section id="about-me" class="notebook-about" aria-labelledby="about-title"><figure class="portrait"><img src="{prefix}assets/{esc(profile['portrait'])}" alt="Xiufeng Li outdoors in front of a mountain landscape" width="501" height="504"><figcaption>{esc(profile['name'])} / AssumeAssume</figcaption></figure><div class="about-copy"><h2 id="about-title">About</h2>{formatted_paragraphs(paragraphs)}<a class="notebook-link" href="{prefix}cv/">The full academic path → CV</a></div></section>'''
+
+
+def notebook_tools(profile):
+    tool = profile['notebook']['tool']
+    return f'''<section id="tools" class="notebook-section tools-notes"><div class="notebook-section-heading"><h2>Tools &amp; notes</h2><p>Small tools, real annoyances.</p></div><div class="tools-grid"><article class="tool-story"><p class="eyebrow">From the workbench</p><h3>{esc(tool['name'])}</h3><p class="tool-origin">{esc(tool['story'])}</p><p>{esc(tool['description'])}</p>{external(tool['url'], 'View on GitHub ↗', 'notebook-link')}</article>{track_demo()}</div></section>'''
+
+
+def outside_lab(profile):
+    return f'''<section id="outside-the-lab" class="outside-lab" aria-labelledby="outside-title"><div><h2 id="outside-title">Outside the lab</h2><p class="outside-tags">Freestyle / Dota / Tenor</p></div><div><h3>{esc(profile['notebook']['outside_title'])}</h3>{formatted_paragraphs([profile['about'][3]])}</div></section>'''
+
+
+def notebook_contact(profile, prefix):
+    return f'''<section id="contact" class="notebook-contact"><div><h2>Research &amp; conversations.</h2><p>Find my papers, code, and professional profile.</p></div><div class="contact-links">{socials(profile)}<a class="notebook-link" href="{prefix}cv/">Curriculum vitae →</a></div></section><details class="milestones"><summary>Updates &amp; milestones</summary>{news(profile)}</details>'''
 
 
 def render_editorial(profile, prefix, preview):
     canonical = profile['site_url'].rstrip('/') + '/' if profile['site_url'] and not preview else ''
-    html_start = head(profile, prefix, canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css',))
-    return html_start + f'''<body class="theme-editorial editorial-v2">{header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">Computational &amp; regulatory genomics</p><h1>The regulatory<br>logic of the<br><em>genome.</em></h1><p class="editorial-name">{esc(profile['name'])}</p><p class="hero-intro">I study how transposable elements and chromatin architecture control gene expression, and how interpretable AI can help explain that regulatory logic.</p><p class="hero-affiliation">{esc(profile['role'])}<br>{esc(profile['affiliation'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research</a><a href="{prefix}cv/">Curriculum vitae</a></div></div>{research_lenses()}</div></section><div class="main-content"><section class="about-section" aria-labelledby="about-title"><div><h2 id="about-title">From LINE-1<br>to regulatory AI.</h2></div><div>{biography(profile)}</div></section>{research(profile)}{editorial_cover(profile, prefix)}{publications(profile, prefix)}{background(profile, prefix)}{news(profile)}{contact(profile)}</div></main>{footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
+    html_start = head(profile, prefix, title=profile['name'] + ' · ' + profile['chinese_name'] + ' | Research notes', canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css', 'tool-demo.css'))
+    notebook = profile['notebook']
+    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">Selected papers ↗</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{selected_work(profile, prefix)}{notebook_tools(profile)}{outside_lab(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile)}<script src="{prefix}assets/editorial.js" defer></script><script src="{prefix}assets/tool-demo.js" defer></script></body></html>'''
+
+
+def publication_page(profile):
+    listing = ''.join(publication(profile, p, '../', full=True) for p in profile['publications'])
+    canonical = profile['site_url'].rstrip('/') + '/publications/' if profile['site_url'] else ''
+    return head(profile, '../', title=profile['name'] + ' | Publications', canonical=canonical, styles=('editorial.css',)) + f'''<body class="theme-editorial editorial-v2 notebook publication-archive">{notebook_header(profile, '../', '../index.html')}<main id="main" class="archive-main"><p class="eyebrow">Complete bibliography</p><h1>Publications</h1><p class="archive-intro">Research papers and reviews, with references, code, and contributions.</p><p class="contribution-note">* Equal contribution. Author lists are abbreviated; complete authors are provided in BibTeX.</p><div id="publications" class="publication-list">{listing}</div><a class="notebook-link" href="../index.html#research">Back to selected work →</a></main>{notebook_footer(profile)}</body></html>'''
 
 
 def render_site(profile, theme, prefix="", preview=False):
@@ -207,7 +246,7 @@ def preview_page(profile):
     options = [
         ("a", "经典学术", "Classic Academic", "固定资料侧栏，紧凑的论文与履历。", "适合：论文、学术求职", "https://academicpages.github.io/"),
         ("b", "极简现代", "Minimal Scholar", "留白、清晰排版和完整论文信息。", "适合：个人学术主页", "https://alshedivat.github.io/al-folio/"),
-        ("c", "研究作品集", "Research Editorial", "互动研究示意、深色开场与论文特写。", "适合：研究展示、合作交流", "https://hugo-apero.netlify.app/")
+        ("c", "研究手记", "Research Notebook", "基因座批注、个人照片与精选研究。", "适合：研究展示、合作交流", "https://hugo-apero.netlify.app/")
     ]
     selected = THEMES[profile['theme']]
     selected_name = next(name for letter, name, *_ in options if letter == selected)
@@ -260,13 +299,14 @@ def main():
     shutil.copytree(ROOT / "assets", OUT / "assets")
     write("index.html", render_site(profile, theme))
     write("cv/index.html", cv_page(profile))
+    write("publications/index.html", publication_page(profile))
     write(".nojekyll", "")
     for pub in profile["publications"]:
         write(f'citations/{pub["id"]}.bib', bibtex(pub))
     write("citations/all.bib", "\n".join(bibtex(p) for p in profile["publications"]))
     if profile["site_url"]:
         base = profile["site_url"].rstrip("/")
-        urls = "".join(f'<url><loc>{esc(base + route)}</loc><lastmod>{profile["updated"]}</lastmod></url>' for route in ("/", "/cv/"))
+        urls = "".join(f'<url><loc>{esc(base + route)}</loc><lastmod>{profile["updated"]}</lastmod></url>' for route in ("/", "/cv/", "/publications/"))
         write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
     if args.include_previews:
         write("preview/index.html", preview_page(profile))

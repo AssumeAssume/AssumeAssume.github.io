@@ -1,12 +1,14 @@
 {
   "name": "Xiufeng Li",
+  "chinese_name": "李秀峰",
+  "portrait": "xiufeng-li.png",
   "initials": "XL",
   "role": "Postdoctoral fellow",
   "affiliation": "VIB Center for AI & Computational Biology",
   "supervisor": "Stein Aerts",
   "theme": "editorial",
   "site_url": "https://assumeassume.github.io",
-  "updated": "2026-10-02",
+  "updated": "2026-10-03",
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
   "about": [
@@ -16,6 +18,24 @@
     "When I’m not staring at genomes (or GPUs), I’m usually **swimming freestyle**, playing **Dota/Dota 2** — 17 years and counting — or singing. I used to sing **tenor in my undergraduate choir**."
   ],
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
+  "notebook": {
+    "question": "How does a gene’s neighborhood shape its expression?",
+    "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
+    "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
+    "about_intro": "These days, I’m at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
+    "outside_title": "Freestyle laps, Dota lobbies, and the occasional high note.",
+    "selected_work": [
+      {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
+      {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"},
+      {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "What can LINE-1 do beyond retrotransposition?"}
+    ],
+    "tool": {
+      "name": "IGV Track Helper",
+      "url": "https://github.com/AssumeAssume/igv-track-helper",
+      "story": "I got tired of selecting tracks one by one. So I fixed it—with Codex.",
+      "description": "A community userscript for IGV-Web: select multiple tracks, filter by name or type, and move groups while keeping their order."
+    }
+  },
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
     {"label": "GitHub", "url": "https://github.com/AssumeAssume"},
