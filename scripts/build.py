@@ -51,8 +51,19 @@ def header(profile, prefix="", home=""):
 </div></header>'''
 
 
-def section_title(number, title, extra=""):
-    return f'<div class="section-heading"><h2><span class="section-number" aria-hidden="true">{number}</span>{title}</h2>{extra}</div>'
+def section_title(title, extra=""):
+    return f'<div class="section-heading"><h2>{title}</h2>{extra}</div>'
+
+
+def biography(profile):
+    paragraphs = profile["about"]
+    if isinstance(paragraphs, str):
+        paragraphs = [paragraphs]
+    rendered = []
+    for paragraph in paragraphs:
+        text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", esc(paragraph))
+        rendered.append(f'<p>{text}</p>')
+    return "".join(rendered)
 
 
 def news(profile):
@@ -73,7 +84,7 @@ def research(profile):
         items += f'''<article class="research-item"><span class="research-index" aria-hidden="true">0{i}</span>
 <p class="eyebrow">{esc(item['label'])}</p><h3>{esc(item['title'])}</h3><p>{esc(item['text'])}</p>
 <ul class="method-tags" aria-label="Research topics">{tags}</ul>{link}</article>'''
-    return f'<section id="research" class="content-section research-section">{section_title("01", "Research") }<div class="research-grid">{items}</div></section>'
+    return f'<section id="research" class="content-section research-section">{section_title("Research")}<div class="research-grid">{items}</div></section>'
 
 
 def publication(profile, pub, prefix, full=False):
@@ -96,7 +107,7 @@ def publication(profile, pub, prefix, full=False):
 def publications(profile, prefix):
     items = "".join(publication(profile, pub, prefix) for pub in profile["publications"])
     return f'''<section id="publications" class="content-section publications-section">
-{section_title('02', 'Publications', '<span class="section-note">2024–2026</span>')}
+{section_title('Publications', '<span class="section-note">2024–2026</span>')}
 <p class="contribution-note">* Equal contribution. Author lists are abbreviated.</p><div class="publication-list">{items}</div></section>'''
 
 
@@ -106,7 +117,7 @@ def timeline(items):
 
 def background(profile, prefix):
     return f'''<section id="background" class="content-section background-section">
-{section_title('03', 'Background', f'<a class="text-link" href="{prefix}cv/">Full curriculum vitae</a>')}
+{section_title('Background', f'<a class="text-link" href="{prefix}cv/">Full curriculum vitae</a>')}
 <div class="background-grid"><div><h3>Experience</h3>{timeline(profile['positions'])}</div><div><h3>Education</h3>{timeline(profile['education'])}</div></div></section>'''
 
 
@@ -150,8 +161,7 @@ def editorial_cover(profile, prefix):
 def render_editorial(profile, prefix, preview):
     canonical = profile['site_url'].rstrip('/') + '/' if profile['site_url'] and not preview else ''
     html_start = head(profile, prefix, canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css',))
-    ribbon = ''.join(f'<a href="#pub-{esc(p["id"])}"><span>{esc(p["journal"])}</span><span>{p["year"]}</span></a>' for p in profile['publications'][:3])
-    return html_start + f'''<body class="theme-editorial editorial-v2">{header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">Computational &amp; regulatory genomics</p><h1>The regulatory<br>logic of the<br><em>genome.</em></h1><p class="editorial-name">{esc(profile['name'])}</p><p class="hero-intro">I study how transposable elements and chromatin architecture control gene expression, and how interpretable AI can help explain that regulatory logic.</p><p class="hero-affiliation">{esc(profile['role'])}<br>{esc(profile['affiliation'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research</a><a href="{prefix}cv/">Curriculum vitae</a></div></div>{research_lenses()}</div><div class="work-ribbon"><p>Selected work</p>{ribbon}</div></section><div class="main-content"><section class="about-section" aria-labelledby="about-title"><div><p class="eyebrow">The researcher</p><h2 id="about-title">From LINE-1<br>to regulatory AI.</h2></div><div><p>{esc(profile['about'])}</p><p>{esc(profile['direction'])}</p></div></section>{research(profile)}{editorial_cover(profile, prefix)}{publications(profile, prefix)}{background(profile, prefix)}{news(profile)}{contact(profile)}</div></main>{footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
+    return html_start + f'''<body class="theme-editorial editorial-v2">{header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">Computational &amp; regulatory genomics</p><h1>The regulatory<br>logic of the<br><em>genome.</em></h1><p class="editorial-name">{esc(profile['name'])}</p><p class="hero-intro">I study how transposable elements and chromatin architecture control gene expression, and how interpretable AI can help explain that regulatory logic.</p><p class="hero-affiliation">{esc(profile['role'])}<br>{esc(profile['affiliation'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research</a><a href="{prefix}cv/">Curriculum vitae</a></div></div>{research_lenses()}</div></section><div class="main-content"><section class="about-section" aria-labelledby="about-title"><div><h2 id="about-title">From LINE-1<br>to regulatory AI.</h2></div><div>{biography(profile)}</div></section>{research(profile)}{editorial_cover(profile, prefix)}{publications(profile, prefix)}{background(profile, prefix)}{news(profile)}{contact(profile)}</div></main>{footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
 
 
 def render_site(profile, theme, prefix="", preview=False):
@@ -160,7 +170,7 @@ def render_site(profile, theme, prefix="", preview=False):
     canonical = profile["site_url"].rstrip("/") + "/" if profile["site_url"] and not preview else ""
     start = head(profile, prefix, canonical=canonical, robots="noindex, nofollow" if preview else "")
     start += f'<body class="theme-{theme}">' + header(profile, prefix)
-    bio = f'<p>{esc(profile["about"])}</p><p>{esc(profile["direction"])}</p>'
+    bio = biography(profile)
     if theme == "classic":
         start += f'''<div class="classic-layout"><aside class="profile-sidebar" aria-label="Profile">
 <div class="initials" aria-hidden="true">{esc(profile['initials'])}</div><h1>{esc(profile['name'])}</h1><p class="sidebar-role">{esc(profile['role'])}</p><p class="secondary">{esc(profile['affiliation'])}</p><div class="sidebar-rule"></div><p class="sidebar-topics">Regulatory genomics<br>Chromatin architecture<br>Interpretable AI</p>{socials(profile, 'sidebar-links')}<a class="cv-link" href="{prefix}cv/">Curriculum vitae</a></aside>

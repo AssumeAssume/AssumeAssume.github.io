@@ -9,7 +9,12 @@
   "updated": "2026-10-02",
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
-  "about": "I am a postdoctoral fellow at the VIB Center for AI & Computational Biology, working with Stein Aerts. I completed my PhD in Bioinformatics at Tsinghua University with Nian Liu, where I studied LINE-1-mediated gene activation and the regulation of hypertranscribed genes.",
+  "about": [
+    "I’m a postdoctoral fellow at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
+    "Before moving to Leuven, I did my PhD in Bioinformatics at **Tsinghua University** with **Nian Liu**, studying LINE-1-mediated gene regulation and hypertranscription. Even earlier, at **Dalian University of Technology**, I worked on microbiome analysis.",
+    "These days, I’m mostly interested in one big question: **how does a gene locus “decide” what to express?** I use genomics and interpretable AI to understand how promoters, enhancers, sequence, and chromatin work together across different cell states.",
+    "When I’m not staring at genomes (or GPUs), I’m usually **swimming freestyle**, playing **Dota/Dota 2** — 17 years and counting — or singing. I used to sing **tenor in my undergraduate choir**."
+  ],
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
@@ -41,8 +46,9 @@
   ],
   "news": [
     {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology as a postdoctoral fellow with Stein Aerts.", "url": ""},
-    {"date": "2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
-    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"}
+    {"date": "July 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
+    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"},
+    {"date": "June 2024", "text": "My first paper was finally online", "url": ""}
   ],
   "publications": [
     {
