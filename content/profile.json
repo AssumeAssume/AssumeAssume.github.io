@@ -28,13 +28,7 @@
       {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
       {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"},
       {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "What can LINE-1 do beyond retrotransposition?"}
-    ],
-    "tool": {
-      "name": "IGV Track Helper",
-      "url": "https://github.com/AssumeAssume/igv-track-helper",
-      "story": "I got tired of selecting tracks one by one. So I fixed it—with Codex.",
-      "description": "A community userscript for IGV-Web: select multiple tracks, filter by name or type, and move groups while keeping their order."
-    }
+    ]
   },
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
