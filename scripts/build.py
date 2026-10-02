@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build an academic website with Python's standard library."""
 import argparse
+import hashlib
 import html
 import json
 import re
@@ -39,14 +40,17 @@ def head(profile, prefix, title=None, lang="en", canonical="", robots="", styles
     if profile.get("portrait") and profile["site_url"]:
         portrait_url = profile["site_url"].rstrip("/") + "/assets/" + profile["portrait"]
         metadata += f'<meta property="og:image" content="{esc(portrait_url)}"><meta property="og:image:alt" content="Portrait of {esc(profile["name"])}"><meta name="twitter:card" content="summary">'
-    extra_styles = ''.join(f'<link rel="stylesheet" href="{prefix}assets/{esc(style)}">' for style in styles)
+    stylesheets = ''.join(
+        f'<link rel="stylesheet" href="{prefix}assets/{esc(style)}?v={hashlib.sha256((ROOT / "assets" / style).read_bytes()).hexdigest()[:12]}">'
+        for style in ('site.css', *styles)
+    )
     return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title or profile['name'] + ' | Regulatory Genomics')}</title>
 <meta name="description" content="{esc(description)}"><meta name="theme-color" content="#F6F4EE">
 <meta property="og:title" content="{esc(title or profile['name'])}"><meta property="og:description" content="{esc(description)}"><meta property="og:type" content="website">
 {metadata}<link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="{prefix}assets/site.css">{extra_styles}</head>'''
+{stylesheets}</head>'''
 
 
 def header(profile, prefix="", home=""):
