@@ -15,7 +15,7 @@
     "I’m a postdoctoral fellow at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
     "Before moving to Leuven, I did my PhD in Bioinformatics at **Tsinghua University** with **Nian Liu**, studying LINE-1-mediated gene regulation and hypertranscription. Even earlier, at **Dalian University of Technology**, I worked on microbiome analysis.",
     "These days, I’m mostly interested in one big question: **how does a gene locus “decide” what to express?** I use genomics and interpretable AI to understand how promoters, enhancers, sequence, and chromatin work together across different cell states.",
-    "When I’m not staring at genomes (or GPUs), I’m usually **swimming freestyle**, playing **Dota/Dota 2** — 17 years and counting — or singing. I used to sing **tenor in my undergraduate choir**."
+    "Outside the lab, I swim freestyle, play Dota—17 years and counting—and sing. I was a tenor in my university choir."
   ],
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
   "notebook": {
@@ -24,6 +24,7 @@
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
     "about_intro": "These days, I’m at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
     "outside_title": "Freestyle laps, Dota lobbies, and the occasional high note.",
+    "currently_exploring": "How do promoters and multiple enhancers work together across a gene locus? I’m exploring interpretable models that connect their individual contributions to gene expression.",
     "selected_work": [
       {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
       {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"},
@@ -60,9 +61,9 @@
   ],
   "news": [
     {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology as a postdoctoral fellow with Stein Aerts.", "url": ""},
-    {"date": "July 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
+    {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
     {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"},
-    {"date": "June 2024", "text": "My first paper was finally online", "url": ""}
+    {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in Nature Genetics!", "url": "https://www.nature.com/articles/s41588-024-01789-5"}
   ],
   "publications": [
     {
@@ -119,12 +120,14 @@
     {
       "id": "safb",
       "title": "SAFB restricts contact domain boundaries associated with L1 chimeric transcription",
-      "authors": ["Yaqiang Hong", "Luyao Bie", "Tao Zhang", "Xiaohan Yan", "Guangpu Jin", "Zhuo Chen", "Yang Wang", "Xiufeng Li", "Gaofeng Pei", "Yongyan Zhang", "Yantao Hong", "Liang Gong", "Xiaohua Shen", "Pilong Li", "Wei Xie", "Yanfen Zhu", "Nian Liu"],
+      "authors": ["Yaqiang Hong", "Luyao Bie", "Tao Zhang", "Xiaohan Yan", "Guangpu Jin", "Zhuo Chen", "Yang Wang", "Xiufeng Li", "Gaofeng Pei", "Yongyan Zhang", "Yantao Hong", "Liang Gong", "Pilong Li", "Wei Xie", "Yanfen Zhu", "Xiaohua Shen", "Nian Liu"],
       "display_authors": "Yaqiang Hong*, Luyao Bie*, Tao Zhang*, et al., including Xiufeng Li",
       "journal": "Molecular Cell",
       "year": 2024,
-      "doi": "",
-      "url": "",
+      "volume": "84",
+      "pages": "1637–1650.e10",
+      "doi": "10.1016/j.molcel.2024.03.021",
+      "url": "https://doi.org/10.1016/j.molcel.2024.03.021",
       "code": "",
       "note": "Co-author",
       "equal_contribution": true,

@@ -192,5 +192,5 @@ def research_locus():
       {_panel('ankrd11', ankrd11, ankrd11_controls, ankrd11_caption,
                'Transcription also needs restraint.', '#pub-ankrd11', 'Cell · 2026')}
       {_panel('ai', ai, ai_controls, ai_caption,
-               'Prediction is useful. Explanation is the goal.', '#research', 'Current research direction')}
+               'Prediction is useful. Explanation is the goal.', '#currently-exploring', 'Current research direction')}
     </div>'''

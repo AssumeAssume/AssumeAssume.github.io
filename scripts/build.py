@@ -87,7 +87,7 @@ def news(profile):
         if item["url"]:
             label = external(item["url"], label)
         rows += f'<li><span class="news-date">{esc(item["date"])}</span><span>{label}</span></li>'
-    return f'<section class="news-section" aria-labelledby="news-title"><h2 id="news-title">Recent updates</h2><ul class="news-list">{rows}</ul></section>'
+    return f'<section id="updates" class="news-section" aria-labelledby="news-title"><h2 id="news-title">Recent updates</h2><ul class="news-list">{rows}</ul></section>'
 
 
 def research(profile):
@@ -150,7 +150,7 @@ def cover_feature(profile, prefix):
 
 
 def notebook_header(profile, prefix="", home=""):
-    return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="{home or '#about'}">{esc(profile['name'])}<span class="brand-note">research notes</span></a><nav aria-label="Main navigation"><a href="{home}#research">Selected work</a><a href="{home}#about-me">About</a><a href="{prefix}cv/">CV</a></nav></div></header>'''
+    return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="{home or '#about'}">{esc(profile['name'])}<span class="brand-note">research notes</span></a><nav aria-label="Main navigation"><a href="{home}#about-me">About</a><a href="{home}#research">Selected work</a><a href="{prefix}cv/">CV</a></nav></div></header>'''
 
 
 def notebook_footer(profile):
@@ -180,19 +180,23 @@ def notebook_about(profile, prefix):
     return f'''<section id="about-me" class="notebook-about" aria-labelledby="about-title"><figure class="portrait"><img src="{prefix}assets/{esc(profile['portrait'])}" alt="Xiufeng Li outdoors in front of a mountain landscape" width="501" height="504"><figcaption>{esc(profile['name'])} / AssumeAssume</figcaption></figure><div class="about-copy"><h2 id="about-title">About</h2>{formatted_paragraphs(paragraphs)}<a class="notebook-link" href="{prefix}cv/">The full academic path → CV</a></div></section>'''
 
 
+def currently_exploring(profile):
+    return f'''<aside id="currently-exploring" class="current-exploration" aria-labelledby="currently-title"><h3 id="currently-title">Currently exploring</h3><p>{esc(profile['notebook']['currently_exploring'])}</p></aside>'''
+
+
 def outside_lab(profile):
-    return f'''<section id="outside-the-lab" class="outside-lab" aria-labelledby="outside-title"><div><h2 id="outside-title">Outside the lab</h2><p class="outside-tags">Freestyle / Dota / Tenor</p></div><div><h3>{esc(profile['notebook']['outside_title'])}</h3>{formatted_paragraphs([profile['about'][3]])}</div></section>'''
+    return f'''<section id="outside-the-lab" class="outside-lab" aria-labelledby="outside-title"><div><h2 id="outside-title">Outside the lab</h2></div><div><h3>{esc(profile['notebook']['outside_title'])}</h3>{formatted_paragraphs([profile['about'][3]])}</div></section>'''
 
 
 def notebook_contact(profile, prefix):
-    return f'''<section id="contact" class="notebook-contact"><div><h2>Research &amp; conversations.</h2><p>Find my papers, code, and professional profile.</p></div><div class="contact-links">{socials(profile)}<a class="notebook-link" href="{prefix}cv/">Curriculum vitae →</a></div></section><details class="milestones"><summary>Updates &amp; milestones</summary>{news(profile)}</details>'''
+    return f'''<section id="contact" class="notebook-contact"><div><h2>Research &amp; conversations.</h2><p>Find my papers, code, and professional profile.</p></div><div class="contact-links">{socials(profile)}<a class="notebook-link" href="{prefix}cv/">Curriculum vitae →</a></div></section>'''
 
 
 def render_editorial(profile, prefix, preview):
     canonical = profile['site_url'].rstrip('/') + '/' if profile['site_url'] and not preview else ''
     html_start = head(profile, prefix, title=profile['name'] + ' · ' + profile['chinese_name'] + ' | Research notes', canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css',))
     notebook = profile['notebook']
-    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">Selected papers ↗</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{selected_work(profile, prefix)}{outside_lab(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
+    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">Selected papers ↗</a></div></div>{research_locus()}</div></section><div class="main-content">{selected_work(profile, prefix)}{currently_exploring(profile)}{notebook_about(profile, prefix)}{outside_lab(profile)}{news(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
 
 
 def publication_page(profile):
