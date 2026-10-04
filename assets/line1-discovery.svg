@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="260" viewBox="0 0 720 260" role="img" aria-labelledby="title desc">
+  <title id="title">From LINE-1 transcription to distal gene activation</title>
+  <desc id="desc">Conceptual summary: transcriptionally active LINE-1 elements can promote long-range chromatin contacts and activate distal genes. The three drawings show steps in the proposed mechanism, not measured data or a single genomic locus.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 6 4 1 7" fill="none" stroke="#1B675A" stroke-width="1.3"/></marker>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 137H190 M265 137H438 M516 137H704" stroke="#788679" stroke-width="2"/>
+    <path d="M47 119H145V155H47Z" fill="#1B675A" stroke="#1B675A" stroke-width="2"/>
+    <path d="M70 104V86H109" stroke="#1B675A" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M115 86c8-20 18 20 26 0s18 20 26 0" stroke="#1B675A" stroke-width="3"/>
+    <path d="M286 126H318V148H286Z M385 126H413L429 137 413 148H385Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M302 120C321 46 386 46 402 120" stroke="#B54B35" stroke-width="3"/>
+    <path d="M549 119H642L664 137 642 155H549Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M578 104V87H615" stroke="#1B675A" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M622 87c8-20 18 20 26 0s18 20 26 0 M594 64c8-20 18 20 26 0s18 20 26 0 M612 41c8-20 18 20 26 0s18 20 26 0" stroke="#1B675A" stroke-width="3"/>
+    <path d="M209 111H241 M462 111H494" stroke="#1B675A" stroke-width="2" marker-end="url(#arrow)"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#202722" text-anchor="middle">
+    <text x="101" y="200"><tspan x="101">LINE-1</tspan><tspan x="101" dy="34">transcription</tspan></text>
+    <text x="353" y="200"><tspan x="353">Long-range</tspan><tspan x="353" dy="34">contacts</tspan></text>
+    <text x="610" y="200"><tspan x="610">Distal gene</tspan><tspan x="610" dy="34">activation</tspan></text>
+  </g>
+</svg>

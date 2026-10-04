@@ -1,0 +1,23 @@
+/* A quiet visual summary beside the scientific question. */
+.study-figure{margin:25px 0 0;max-width:460px}
+.study-figure img{display:block;width:100%;height:auto}
+.study-figure figcaption{margin-top:12px;font-size:.75rem;line-height:1.8;color:var(--muted);max-width:410px}
+.notebook .social-links .email-link{font-weight:600}
+.about-copy a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.about-copy a:hover{text-decoration-color:var(--accent)}
+.contact-links .social-links{justify-content:flex-end}
+.contact-links .email-contact{align-items:flex-end}
+.notebook .publication-keywords{max-width:590px;font-size:.8125rem;line-height:1.9}
+@media(max-width:900px) and (min-width:681px){
+ .selected-study:has(.study-figure) .study-grid{grid-template-columns:1fr}
+ .selected-study:has(.study-figure) .study-question{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+ .selected-study:has(.study-figure) .study-question h3{grid-column:1}
+ .selected-study:has(.study-figure) .study-question>p{grid-column:1}
+ .study-figure{grid-column:2;grid-row:1 / 3;margin:0;align-self:center}
+}
+@media(max-width:680px){
+ .study-figure{margin-top:22px;max-width:460px}
+ .study-figure figcaption{font-size:.75rem;margin-top:10px}
+ .contact-links .social-links{justify-content:flex-start}
+ .contact-links .email-contact{align-items:flex-start}
+}

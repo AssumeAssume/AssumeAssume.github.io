@@ -1,36 +1,39 @@
 {
   "name": "Xiufeng Li",
   "chinese_name": "李秀峰",
+  "pronunciation": "Show Phone Lee",
   "portrait": "xiufeng-li.png",
+  "share_image": "share-card.png",
+  "share_image_alt": "Xiufeng Li · 李秀峰. How does a gene’s neighborhood shape its expression? Gene regulation, LINE-1 and interpretable AI.",
   "initials": "XL",
   "role": "Postdoctoral fellow",
-  "affiliation": "VIB Center for AI & Computational Biology",
-  "supervisor": "Stein Aerts",
+  "affiliation": "VIB Center for AI & Computational Biology and KU Leuven",
+  "supervisor": "Dr. Stein Aerts",
   "theme": "editorial",
   "site_url": "https://assumeassume.github.io",
-  "updated": "2026-10-03",
+  "updated": "2026-10-04",
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
   "about": [
-    "I’m a postdoctoral fellow at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
-    "Before moving to Leuven, I did my PhD in Bioinformatics at **Tsinghua University** with **Nian Liu**, studying LINE-1-mediated gene regulation and hypertranscription. Even earlier, at **Dalian University of Technology**, I worked on microbiome analysis.",
-    "These days, I’m mostly interested in one big question: **how does a gene locus “decide” what to express?** I use genomics and interpretable AI to understand how promoters, enhancers, sequence, and chromatin work together across different cell states.",
-    "Outside the lab, I swim freestyle, play Dota—17 years and counting—and sing. I was a tenor in my university choir."
+    "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with **[Dr. Stein Aerts](https://aertslab.org/)** on gene regulation, enhancers, and interpretable AI.",
+    "Before moving to Leuven, I did my PhD in Bioinformatics at **Tsinghua University** with **[Dr. Nian Liu](https://liulab.life.tsinghua.edu.cn/)**, studying LINE-1-mediated gene regulation and hypertranscription. Earlier, I earned my bachelor’s degree at **Dalian University of Technology** and completed my undergraduate thesis at the **Beijing Institute of Genomics, Chinese Academy of Sciences**, working with **Dr. Mingkun Li** on lung microbiome analysis.",
+    "I’m mostly interested in one big question: **how does a gene locus “decide” what to express?** I use genomics and interpretable AI to understand how promoters, enhancers, sequence, and chromatin work together across different cell states.",
+    "Outside the lab, I swim freestyle, play Dota/Dota 2—17 years and counting—and sing. I was a tenor in my university choir. I also love watching TV series, especially Better Call Saul. Albuquerque, New Mexico, is the city I’d most like to visit."
   ],
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
   "notebook": {
     "question": "How does a gene’s neighborhood shape its expression?",
     "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
-    "about_intro": "These days, I’m at the **VIB Center for AI & Computational Biology**, working with **Stein Aerts** on gene regulation, enhancers, and interpretable AI.",
-    "outside_title": "Freestyle laps, Dota lobbies, and the occasional high note.",
+    "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with **[Dr. Stein Aerts](https://aertslab.org/)** on gene regulation, enhancers, and interpretable AI.",
     "currently_exploring": "How do promoters and multiple enhancers work together across a gene locus? I’m exploring interpretable models that connect their individual contributions to gene expression.",
     "selected_work": [
       {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
       {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"},
-      {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "What can LINE-1 do beyond retrotransposition?"}
+      {"publication": "line1-review", "title": "A wider view of LINE-1"}
     ]
   },
+  "email": {"user": "bHhmMDA3MDA3", "domain": "Z21haWwuY29t"},
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
     {"label": "GitHub", "url": "https://github.com/AssumeAssume"},
@@ -60,7 +63,7 @@
     }
   ],
   "news": [
-    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology as a postdoctoral fellow with Stein Aerts.", "url": ""},
+    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts.", "url": ""},
     {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
     {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"},
     {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in Nature Genetics!", "url": "https://www.nature.com/articles/s41588-024-01789-5"}
@@ -79,7 +82,11 @@
       "note": "Co-first author",
       "equal_contribution": true,
       "summary": "ANKRD11 condensates restrain hypertranscribed regions and safeguard transcriptional control during development.",
-      "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework."
+      "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework.",
+      "figure": "ankrd11-discovery.svg",
+      "figure_alt": "Conceptual mechanism: ANKRD11 condensates restrain excessive transcription at hypertranscribed genes while allowing ongoing gene expression.",
+      "figure_caption": "Conceptual summary: ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
+      "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"]
     },
     {
       "id": "line1-review",
@@ -97,6 +104,7 @@
       "equal_contribution": false,
       "summary": "A synthesis of LINE-1 regulation and its roles in genome organization, development and disease.",
       "contribution": "I conceived and wrote the review, synthesized the literature, and developed its conceptual framework and figures.",
+      "keywords": ["LINE-1 regulation", "Chromatin organization", "Development"],
       "image": "tig-cover.jpg",
       "image_credit": "Trends in Genetics · Volume 41, Issue 7 · July 2025 · Cell Press"
     },
@@ -115,7 +123,11 @@
       "note": "Co-first author",
       "equal_contribution": true,
       "summary": "Active LINE-1 elements promote long-range chromatin contacts and distal gene activation, including during zygotic genome activation.",
-      "contribution": "I led the computational and conceptual development, integrating genomic analyses into the mechanistic framework."
+      "contribution": "I led the computational and conceptual development, integrating genomic analyses into the mechanistic framework.",
+      "keywords": ["LINE-1 regulation", "3D genomics", "Zygotic genome activation"],
+      "figure": "line1-discovery.svg",
+      "figure_alt": "Conceptual mechanism: LINE-1 transcription promotes long-range chromatin contacts and distal gene activation.",
+      "figure_caption": "Conceptual summary of the study: active LINE-1 elements can help regulate genes at a distance."
     },
     {
       "id": "safb",
@@ -132,16 +144,20 @@
       "note": "Co-author",
       "equal_contribution": true,
       "summary": "SAFB constrains chromatin contact-domain boundaries associated with L1 chimeric transcription.",
-      "contribution": "I contributed genomic analyses and interpretation of the genomic results."
+      "contribution": "I contributed genomic analyses and interpretation of the genomic results.",
+      "keywords": ["SAFB", "L1 chimeric transcription", "Contact-domain boundaries"]
     }
   ],
   "positions": [
-    {"period": "Sep 2026 — present", "title": "Postdoctoral fellow", "institution": "VIB Center for AI & Computational Biology", "detail": "Supervisor: Stein Aerts"},
-    {"period": "Jan 2025 — Aug 2026", "title": "Research assistant", "institution": "Tsinghua University", "detail": "Supervisor: Nian Liu"}
+    {"period": "Sep 2026 — present", "title": "Postdoctoral fellow", "institution": "VIB Center for AI & Computational Biology and KU Leuven", "detail": "Supervisor: Dr. Stein Aerts"},
+    {"period": "Jan 2025 — Aug 2026", "title": "Research assistant", "institution": "Tsinghua University", "detail": "Supervisor: Dr. Nian Liu"}
+  ],
+  "research_experience": [
+    {"period": "Nov 2018 — May 2019", "title": "Research on lung microbiome analysis", "institution": "Beijing Institute of Genomics, Chinese Academy of Sciences", "detail": "Worked with Dr. Mingkun Li."}
   ],
   "education": [
-    {"period": "2019 — 2024", "title": "PhD in Bioinformatics", "institution": "Tsinghua University", "detail": "Supervisor: Nian Liu"},
-    {"period": "2015 — 2019", "title": "BS in Bioinformatics", "institution": "Dalian University of Technology", "detail": "Supervisor: Mingkun Li"}
+    {"period": "2019 — 2024", "title": "PhD in Bioinformatics", "institution": "Tsinghua University", "detail": "Supervisor: Dr. Nian Liu"},
+    {"period": "2015 — 2019", "title": "BS in Bioinformatics", "institution": "Dalian University of Technology"}
   ],
   "awards": [
     {"year": "2024", "title": "Zhou Chuan Memorial Scholarship"},
@@ -162,7 +178,24 @@
     "Mentored doctoral students in computational genomics, bioinformatics workflows and AI-based genomic analysis."
   ],
   "service": [
-    "Early Career Researcher Reviewer, Nature Communications",
-    "Science communication on genomics, bioinformatics and academic training through WeChat and Xiaohongshu"
+    {
+      "role": "Early Career Researcher Reviewer",
+      "journals": ["Nature Communications"]
+    },
+    {
+      "role": "Co-reviewing",
+      "journals": [
+        "Cell",
+        "Molecular Cell",
+        "Nature Structural & Molecular Biology",
+        "Aging Cell",
+        "Cell Reports",
+        "Cell Regeneration",
+        "Journal of Genetics and Genomics",
+        "Mobile DNA",
+        "Science China Life Sciences"
+      ]
+    },
+    "Science communication on genomics, bioinformatics and academic training."
   ]
 }

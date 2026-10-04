@@ -23,7 +23,7 @@ def _svg(theme, title, description, drawing):
       <path class="genome-track" d="M 36 176 H 524" fill="none" />
       <path class="genome-track" d="M 36 181 H 524" fill="none" />
       {drawing}
-      <text class="locus-axis-label" x="36" y="257">Genomic context</text>
+      <text class="locus-axis-label" x="36" y="264">Genomic context</text>
     </svg>'''
 
 
@@ -117,7 +117,7 @@ def research_locus():
           <path d="M 384 118 V 127 M 374 118 H 394" />
         </g>
         <text class="locus-diagram-label" x="101" y="138" text-anchor="middle">Chromatin</text>
-        <text class="locus-diagram-label" x="380" y="235" text-anchor="middle">Hypertranscribed gene</text>'''
+        <text class="locus-diagram-label" x="380" y="239" text-anchor="middle">Hypertranscribed gene</text>'''
     )
     ankrd11_controls = [
         _control('ankrd11', 'ANKRD11', 'condensate', ankrd11_caption, True),
@@ -148,7 +148,7 @@ def research_locus():
         <g class="locus-element" data-locus-feature="model"
           role="button" tabindex="0" data-locus-focus="model" aria-pressed="false"
           aria-label="Explore interpretable AI">
-          <rect x="198" y="26" width="165" height="44" rx="2" />
+          <rect x="147" y="26" width="267" height="44" rx="2" />
           <text class="locus-diagram-label" x="280.5" y="53" text-anchor="middle">Interpretable AI</text>
         </g>
         <g class="locus-element is-emphasized" data-locus-feature="enhancers"

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Xiufeng Li · 李秀峰 — Gene regulation</title>
+  <desc id="desc">How does a gene’s neighborhood shape its expression? Gene regulation, LINE-1 and interpretable AI. An annotated conceptual gene locus accompanies Xiufeng Li’s name.</desc>
+  <rect width="1200" height="630" fill="#F6F4EE"/>
+  <path d="M64 150H1136 M64 549H1136" stroke="#d9ddd1" stroke-width="2"/>
+  <text x="64" y="107" font-family="Georgia, 'Times New Roman', serif" font-size="52" fill="#202722">Xiufeng Li</text>
+  <text x="322" y="105" font-family="'PingFang SC', 'Noto Sans CJK SC', sans-serif" font-size="28" fill="#1B675A">· 李秀峰</text>
+  <g font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#202722">
+    <text x="64" y="247">How does a gene’s</text>
+    <text x="64" y="317">neighborhood shape</text>
+    <text x="64" y="387">its expression?</text>
+  </g>
+  <text x="66" y="471" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536057">From LINE-1 and chromatin to interpretable AI.</text>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M782 359H1126" fill="none" stroke="#788679" stroke-width="2"/>
+    <path d="M812 342H873V376H812Z" fill="#1B675A" stroke="#1B675A" stroke-width="2"/>
+    <path d="M1047 342H1092L1114 359 1092 376H1047Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M843 335C881 204 1039 204 1074 335" fill="none" stroke="#B54B35" stroke-width="3"/>
+    <path d="M829 327V313H858 M851 306L859 313 851 320" fill="none" stroke="#1B675A" stroke-width="2"/>
+    <path d="M928 348H951V370H928Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M940 340Q995 270 1074 340" fill="none" stroke="#788679" stroke-width="2"/>
+  </g>
+  <g font-family="Menlo, monospace" font-size="19" fill="#536057" text-anchor="middle">
+    <text x="842" y="411">LINE-1</text><text x="1080" y="411">gene</text>
+  </g>
+  <text x="957" y="213" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-style="italic" fill="#1B675A">Context matters.</text>
+  <text x="64" y="593" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#536057">Aerts lab · Leuven, Belgium</text>
+  <text x="1136" y="593" text-anchor="end" font-family="Menlo, monospace" font-size="20" fill="#1B675A">assumeassume.github.io</text>
+</svg>

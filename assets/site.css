@@ -93,6 +93,14 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .contact-section p:not(.eyebrow){color:var(--muted);font-size:.875rem}
 .social-links{display:flex;gap:1.75rem;align-items:center;flex-wrap:wrap}
 .social-links a{font-size:.875rem;border-bottom:1px solid var(--line);padding:5px 0}
+.email-contact{display:flex;flex-direction:column;align-items:flex-start;gap:2px;flex-basis:100%}
+.email-link{appearance:none;background:transparent;border:0;border-bottom:1px solid var(--accent);border-radius:0;color:var(--accent);font-size:.875rem;font-weight:600;padding:5px 0;min-height:44px;text-align:left}
+.email-fallback{font:400 .75rem/1.8 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
+.publication-keywords{margin-top:18px;font-size:.8125rem;line-height:1.9;color:var(--muted)}
+.keywords-label{display:block;margin-bottom:5px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.publication-keywords ul{display:block;list-style:none;margin:0;padding:0}
+.publication-keywords li{display:inline}
+.publication-keywords li+li::before{content:" · ";color:var(--muted);white-space:pre}
 .site-footer{max-width:1120px;margin:0 auto;padding:24px 0 32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font-size:.75rem}
 
 /* A: a familiar academic page with a permanent profile column */
@@ -187,6 +195,12 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .cv-main .timeline li{grid-template-columns:170px 1fr}
 .cv-main .contribution-note{margin-top:0}
 .cv-main .publication h3{font-size:1.2rem}
+.cv-page .journal,.cv-page .journal-badge{display:inline-flex;align-items:center;max-width:100%;min-height:34px;padding:6px 11px;border:1px solid #c9d8d1;border-radius:2px;background:#f3f7f5;color:var(--accent);font:500 .8125rem/1.45 var(--sans);overflow-wrap:break-word}
+.cv-page .journal-badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:10px 0 0;padding:0}
+.cv-page .journal-badges li{display:flex;max-width:100%}
+.cv-page .reviewing-role{font-size:.875rem;font-weight:500;line-height:1.65;color:var(--ink)}
+.cv-page .reviewing-group+.reviewing-group{margin-top:22px}
+.cv-page .outreach-note{font-size:.875rem;line-height:1.8;margin-top:22px}
 .cv-records{list-style:none}
 .cv-records li{display:grid;grid-template-columns:80px 1fr;gap:1rem;margin-bottom:17px}
 .cv-records li>span{color:var(--muted);font-size:.875rem}
@@ -374,7 +388,7 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 @media print{
  @page{size:A4;margin:16mm}
  body{font-size:10pt;line-height:1.55;background:#fff;color:#000}
- .site-header,.site-footer,.print-button,.skip-link{display:none}
+ .site-header,.site-footer,.print-button,.skip-link,.email-link{display:none}
  .cv-main{margin:0;max-width:none}
  .cv-heading h1{font-size:30pt}
  .cv-heading p:not(.eyebrow){font-size:10pt}
@@ -392,4 +406,9 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
  .timeline li{margin-bottom:14px}
  .cv-records li{margin-bottom:9px}
  .cv-records p{font-size:9pt}
+ .cv-page .journal,.cv-page .journal-badge{font-size:9pt;min-height:0;padding:3pt 6pt;background:#fff;color:#000;border-color:#aaa;break-inside:avoid}
+ .cv-page .journal-badges{gap:4pt;margin-top:6pt}
+ .cv-page .reviewing-group{break-inside:avoid}
+ .cv-page .reviewing-role{font-size:9pt;break-after:avoid}
+ .cv-page .reviewing-group+.reviewing-group,.cv-page .outreach-note{margin-top:12pt}
 }
