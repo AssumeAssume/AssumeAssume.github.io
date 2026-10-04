@@ -1,36 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="390" viewBox="0 0 720 390" role="img" aria-labelledby="title desc">
-  <title id="title">ANKRD11 restrains elongation at hypertranscribed genes</title>
-  <desc id="desc">A gene with very high transcriptional activity is the focus of this conceptual illustration. Several nascent RNA strands indicate ongoing transcription. An ANKRD11 condensate overlaps the transcribed locus, and a restraint symbol points to the forward transcription-elongation arrow. The number of strands and the size of the condensate are schematic, not quantitative measurements.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="260" viewBox="0 0 720 260" role="img" aria-labelledby="title desc">
+  <title id="title">ANKRD11 condensates restrain excessive transcription</title>
+  <desc id="desc">Conceptual summary: ANKRD11 forms condensates at hypertranscribed genes, restrains transcriptional elongation, and helps safeguard gene regulation during development. Transcription continues in the final drawing; restraint does not mean complete silencing. These drawings summarize a mechanism and are not measurements of condensate size, transcription rate, or gene output.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 6 4 1 7" fill="none" stroke="#1B675A" stroke-width="1.3"/></marker>
   </defs>
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <ellipse cx="317" cy="192" rx="217" ry="98" fill="#e9eee5" stroke="#1B675A" stroke-width="2" stroke-dasharray="5 7"/>
-    <path d="M220 76V95" stroke="#1B675A" stroke-width="2"/>
-    <g fill="#1B675A" stroke="none">
-      <circle cx="167" cy="136" r="6"/>
-      <circle cx="217" cy="117" r="6"/>
-      <circle cx="376" cy="117" r="6"/>
-      <circle cx="454" cy="142" r="6"/>
-      <circle cx="484" cy="184" r="6"/>
+    <ellipse cx="101" cy="99" rx="90" ry="69" fill="#e9eee5" stroke="#1B675A" stroke-width="2" stroke-dasharray="4 6"/>
+    <path d="M12 137H190 M265 137H438 M516 137H704" stroke="#788679" stroke-width="2"/>
+    <path d="M47 119H128L149 137 128 155H47Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <g fill="#1B675A" stroke="#1B675A" stroke-width="2">
+      <circle cx="51" cy="85" r="7"/>
+      <circle cx="79" cy="57" r="7"/>
+      <circle cx="124" cy="57" r="7"/>
+      <circle cx="151" cy="85" r="7"/>
     </g>
-    <path d="M24 238H696" stroke="#788679" stroke-width="2"/>
-    <path d="M70 222H636L657 238 636 254H70Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2.5"/>
-    <path d="M158 213c-16-12 12-21-2-33s12-21-2-33 M246 213c-16-12 12-21-2-33s12-21-2-33 12-21-2-33 M334 213c-16-12 12-21-2-33s12-21-2-33 12-21-2-33 M422 213c-16-12 12-21-2-33s12-21-2-33 M552 213c-16-12 12-21-2-33" stroke="#1B675A" stroke-width="3.5"/>
-    <g fill="#F6F4EE" stroke="#1B675A" stroke-width="3">
-      <circle cx="158" cy="221" r="9"/>
-      <circle cx="246" cy="221" r="9"/>
-      <circle cx="334" cy="221" r="9"/>
-      <circle cx="422" cy="221" r="9"/>
-      <circle cx="552" cy="221" r="9"/>
-    </g>
-    <path d="M572 183H653" stroke="#1B675A" stroke-width="3" marker-end="url(#arrow)"/>
-    <path d="M612 82V159 M590 159H634" stroke="#B54B35" stroke-width="4"/>
+    <path d="M285 119H394L416 137 394 155H285Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M302 108V94H359" stroke="#1B675A" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M348 53V79 M333 79H363" stroke="#B54B35" stroke-width="4"/>
+    <path d="M373 94c8-20 18 20 26 0s18 20 26 0" stroke="#1B675A" stroke-width="3"/>
+    <path d="M549 119H642L664 137 642 155H549Z" fill="#e1e8dd" stroke="#1B675A" stroke-width="2"/>
+    <path d="M574 104V86H613" stroke="#1B675A" stroke-width="3" marker-end="url(#arrow)"/>
+    <path d="M623 86c8-20 18 20 26 0s18 20 26 0" stroke="#1B675A" stroke-width="3"/>
+    <path d="M209 111H241 M462 111H494" stroke="#1B675A" stroke-width="2" marker-end="url(#arrow)"/>
   </g>
-  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle">
-    <text x="220" y="31" fill="#1B675A" font-size="32"><tspan x="220">ANKRD11</tspan><tspan x="220" dy="34">condensate</tspan></text>
-    <text x="607" y="31" fill="#B54B35" font-size="32"><tspan x="607">Restrains</tspan><tspan x="607" dy="34">elongation</tspan></text>
-    <text x="360" y="338" fill="#202722" font-size="38" font-weight="600">Hypertranscribed genes</text>
-    <text x="360" y="375" fill="#536057" font-size="28">Very high transcriptional activity</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#202722" text-anchor="middle">
+    <text x="101" y="200"><tspan x="101">ANKRD11</tspan><tspan x="101" dy="34">condensate</tspan></text>
+    <text x="353" y="200"><tspan x="353">Transcriptional</tspan><tspan x="353" dy="34">restraint</tspan></text>
+    <text x="610" y="200"><tspan x="610">Controlled</tspan><tspan x="610" dy="34">gene output</tspan></text>
   </g>
 </svg>

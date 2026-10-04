@@ -84,9 +84,8 @@
       "summary": "ANKRD11 condensates restrain hypertranscribed regions and safeguard transcriptional control during development.",
       "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework.",
       "figure": "ankrd11-discovery.svg",
-      "figure_alt": "A hypertranscribed gene with multiple nascent RNA strands. An ANKRD11 condensate overlaps the locus, and a restraint symbol points to transcription elongation while transcription remains active.",
-      "figure_caption": "Conceptual summary: ANKRD11 condensates restrain transcription elongation at genes with exceptionally high transcriptional activity.",
-      "figure_height": 390,
+      "figure_alt": "Conceptual mechanism: ANKRD11 condensates restrain excessive transcription at hypertranscribed genes while allowing ongoing gene expression.",
+      "figure_caption": "Conceptual summary: ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
       "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"]
     },
     {
