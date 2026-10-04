@@ -1,5 +1,5 @@
 /* Research notes: paper, regulatory DNA, and a person behind the work. */
-.notebook{--paper:#F6F4EE;--ink:#202722;--accent:#1B675A;--rust:#B54B35;--muted:#536057;--line:#d9ddd1;--soft:#e9eee5;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);color:var(--ink)}
+.notebook{--ink:#202722;--accent:#1B675A;--rust:#B54B35;--muted:#536057;--line:#d9ddd1;--soft:#e9eee5;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);color:var(--ink)}
 .notebook a{color:var(--accent)}
 .notebook :is(a,button,input,summary,[role=button]):focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 .notebook .site-header{background:var(--paper);border-bottom:1px solid var(--line)}
