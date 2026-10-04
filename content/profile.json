@@ -150,10 +150,8 @@
   ],
   "positions": [
     {"period": "Sep 2026 — present", "title": "Postdoctoral fellow", "institution": "VIB Center for AI & Computational Biology and KU Leuven", "detail": "Supervisor: Dr. Stein Aerts"},
-    {"period": "Jan 2025 — Aug 2026", "title": "Research assistant", "institution": "Tsinghua University", "detail": "Supervisor: Dr. Nian Liu"}
-  ],
-  "research_experience": [
-    {"period": "Nov 2018 — May 2019", "title": "Research on lung microbiome analysis", "institution": "Beijing Institute of Genomics, Chinese Academy of Sciences", "detail": "Worked with Dr. Mingkun Li."}
+    {"period": "Jan 2025 — Aug 2026", "title": "Research assistant", "institution": "Tsinghua University", "detail": "Supervisor: Dr. Nian Liu"},
+    {"period": "Nov 2018 — May 2019", "title": "Research intern", "institution": "Beijing Institute of Genomics, Chinese Academy of Sciences", "detail": "Worked with Dr. Mingkun Li on lung microbiome analysis.", "funding": "Funded by the Innovation Practice Training Program of the Chinese Academy of Sciences (CAS)."}
   ],
   "education": [
     {"period": "2019 — 2024", "title": "PhD in Bioinformatics", "institution": "Tsinghua University", "detail": "Supervisor: Dr. Nian Liu"},
