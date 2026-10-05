@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="260" viewBox="0 0 720 260" role="img" aria-labelledby="title desc">
   <title id="title">ANKRD11 condensates restrain excessive transcription</title>
-  <desc id="desc">Conceptual summary: ANKRD11 forms condensates at hypertranscribed genes, restrains transcriptional elongation, and helps safeguard gene regulation during development. Transcription continues in the final drawing; restraint does not mean complete silencing. These drawings summarize a mechanism and are not measurements of condensate size, transcription rate, or gene output.</desc>
+  <desc id="desc">ANKRD11 forms condensates at hypertranscribed genes, restrains transcriptional elongation, and helps safeguard gene regulation during development. Transcription continues in the final drawing; restraint does not mean complete silencing. These drawings summarize a mechanism and are not measurements of condensate size, transcription rate, or gene output.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 6 4 1 7" fill="none" stroke="#1B675A" stroke-width="1.3"/></marker>
   </defs>

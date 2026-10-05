@@ -11,7 +11,7 @@
   "supervisor": "Dr. Stein Aerts",
   "theme": "editorial",
   "site_url": "https://assumeassume.github.io",
-  "updated": "2026-10-04",
+  "updated": "2026-10-05",
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
   "about": [
@@ -85,7 +85,7 @@
       "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework.",
       "figure": "ankrd11-discovery.svg",
       "figure_alt": "Conceptual mechanism: ANKRD11 condensates restrain excessive transcription at hypertranscribed genes while allowing ongoing gene expression.",
-      "figure_caption": "Conceptual summary: ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
+      "figure_caption": "ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
       "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"]
     },
     {
@@ -127,7 +127,7 @@
       "keywords": ["LINE-1 regulation", "3D genomics", "Zygotic genome activation"],
       "figure": "line1-discovery.svg",
       "figure_alt": "Conceptual mechanism: LINE-1 transcription promotes long-range chromatin contacts and distal gene activation.",
-      "figure_caption": "Conceptual summary of the study: active LINE-1 elements can help regulate genes at a distance."
+      "figure_caption": "Active LINE-1 elements can help regulate genes at a distance."
     },
     {
       "id": "safb",
