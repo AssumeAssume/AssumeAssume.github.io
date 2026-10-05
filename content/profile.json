@@ -15,22 +15,22 @@
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
   "about": [
-    "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with **[Dr. Stein Aerts](https://aertslab.org/)** on gene regulation, enhancers, and interpretable AI.",
-    "Before moving to Leuven, I did my PhD in Bioinformatics at **Tsinghua University** with **[Dr. Nian Liu](https://liulab.life.tsinghua.edu.cn/)**, studying LINE-1-mediated gene regulation and hypertranscription. Earlier, I earned my bachelor’s degree at **Dalian University of Technology** and completed my undergraduate thesis at the **Beijing Institute of Genomics, Chinese Academy of Sciences**, working with **Dr. Mingkun Li** on lung microbiome analysis.",
+    "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with [Dr. Stein Aerts](https://aertslab.org/) on gene regulation, enhancers, and interpretable AI.",
+    "Before moving to Leuven, I did my PhD in Bioinformatics at Tsinghua University with [Dr. Nian Liu](https://liulab.life.tsinghua.edu.cn/), studying LINE-1-mediated gene regulation and hypertranscription. Earlier, I earned my bachelor’s degree at Dalian University of Technology and completed my undergraduate thesis at the Beijing Institute of Genomics, Chinese Academy of Sciences, working with [Dr. Mingkun Li](http://english.big.cas.cn/sourcedb/fs/ISD/202310/t20231031_445015.html) on lung microbiome analysis.",
     "I’m mostly interested in one big question: **how does a gene locus “decide” what to express?** I use genomics and interpretable AI to understand how promoters, enhancers, sequence, and chromatin work together across different cell states.",
-    "Outside the lab, I swim freestyle, play Dota/Dota 2—17 years and counting—and sing. I was a tenor in my university choir. I also love watching TV series, especially Better Call Saul. Albuquerque, New Mexico, is the city I’d most like to visit."
+    "Outside the lab, I swim freestyle, play Dota/Dota 2 (17 years and counting), and sing. I was a tenor in my university choir. I also love watching TV series, especially Better Call Saul. Albuquerque, New Mexico, is the city I’d most like to visit."
   ],
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
   "notebook": {
     "question": "How does a gene’s neighborhood shape its expression?",
     "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
-    "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with **[Dr. Stein Aerts](https://aertslab.org/)** on gene regulation, enhancers, and interpretable AI.",
+    "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with [Dr. Stein Aerts](https://aertslab.org/) on gene regulation, enhancers, and interpretable AI.",
     "currently_exploring": "How do promoters and multiple enhancers work together across a gene locus? I’m exploring interpretable models that connect their individual contributions to gene expression.",
     "selected_work": [
       {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
-      {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"},
-      {"publication": "line1-review", "title": "A wider view of LINE-1"}
+      {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "How is LINE-1 regulated, and what does it do in the human genome?"},
+      {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"}
     ]
   },
   "email": {"user": "bHhmMDA3MDA3", "domain": "Z21haWwuY29t"},

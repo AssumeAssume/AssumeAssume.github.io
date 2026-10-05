@@ -5,19 +5,17 @@
 .notebook .social-links .email-link{font-weight:600}
 .about-copy a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
 .about-copy a:hover{text-decoration-color:var(--accent)}
-.contact-links .social-links{justify-content:flex-end}
-.contact-links .email-contact{align-items:flex-end}
 .notebook .publication-keywords{max-width:590px;font-size:.8125rem;line-height:1.9}
 @media(max-width:900px) and (min-width:681px){
- .selected-study:has(.study-figure) .study-grid{grid-template-columns:1fr}
- .selected-study:has(.study-figure) .study-question{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
- .selected-study:has(.study-figure) .study-question h3{grid-column:1}
- .selected-study:has(.study-figure) .study-question>p{grid-column:1}
- .study-figure{grid-column:2;grid-row:1 / 3;margin:0;align-self:center}
+ /* Every study reads the same way here: question beside its visual, then the result. */
+ .selected-study:has(.study-figure,.work-cover) .study-grid{grid-template-columns:1fr}
+ /* The flexible second row absorbs a tall visual, so the question stays under its title. */
+ .selected-study:has(.study-figure,.work-cover) .study-question{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:28px;align-items:start}
+ .selected-study:has(.study-figure,.work-cover) .study-question>:is(h3,p){grid-column:1}
+ .study-figure,.work-cover{grid-column:2;grid-row:1 / 3;margin:0}
+ .study-figure{align-self:center}
 }
 @media(max-width:680px){
  .study-figure{margin-top:22px;max-width:460px}
  .study-figure figcaption{font-size:.75rem;margin-top:10px}
- .contact-links .social-links{justify-content:flex-start}
- .contact-links .email-contact{align-items:flex-start}
 }

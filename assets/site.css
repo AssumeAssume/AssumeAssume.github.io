@@ -1,5 +1,11 @@
 /* Shared foundations */
-:root{color-scheme:light;--paper:#F6F4EE;--ink:#202c2b;--muted:#5f6d6b;--accent:#245e53;--line:#dce4e1;--soft:#f3f7f5;--serif:Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}
+/* Georgia only ships old-style figures (no usable lnum feature), which sets the digits of
+   ANKRD11 or LINE-1 at lowercase height. Digits alone come from a sturdy serif with lining
+   figures: Charter (Apple, also by Matthew Carter), then Cambria or Times New Roman. */
+@font-face{font-family:"Serif Lining Figures";font-weight:400;src:local("Charter Roman"),local("Charter-Roman"),local("Cambria"),local("Times New Roman"),local("TimesNewRomanPSMT");unicode-range:U+0030-0039}
+@font-face{font-family:"Serif Lining Figures";font-weight:700;src:local("Charter Bold"),local("Charter-Bold"),local("Cambria Bold"),local("Cambria-Bold"),local("Times New Roman Bold"),local("TimesNewRomanPS-BoldMT");unicode-range:U+0030-0039}
+@font-face{font-family:"Serif Lining Figures";font-style:italic;font-weight:400;src:local("Charter Italic"),local("Charter-Italic"),local("Cambria Italic"),local("Cambria-Italic"),local("Times New Roman Italic"),local("TimesNewRomanPS-ItalicMT");unicode-range:U+0030-0039}
+:root{color-scheme:light;--paper:#F6F4EE;--ink:#202c2b;--muted:#5f6d6b;--accent:#245e53;--line:#dce4e1;--soft:#f3f7f5;--serif:"Serif Lining Figures",Georgia,'Times New Roman',serif;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:2rem}
 body{margin:0;background:#fff;color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased}
@@ -10,8 +16,10 @@ button{font:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #28867e;outline-offset:5px}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,h4,p,figure{margin:0}
-h1,h2,h3,h4{font-weight:500;line-height:1.25}
+h1,h2,h3,h4{font-weight:500;line-height:1.25;text-wrap:balance}
+p,li,figcaption{text-wrap:pretty}
 p+p{margin-top:1.1rem}
+.visually-hidden{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 ul,ol{padding:0;margin:0}
 section[id]{scroll-margin-top:2rem}
 .skip-link{position:absolute;top:-100px;left:1rem;z-index:20;padding:.7rem 1rem;background:#fff;color:#153f39}
@@ -93,14 +101,17 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .contact-section p:not(.eyebrow){color:var(--muted);font-size:.875rem}
 .social-links{display:flex;gap:1.75rem;align-items:center;flex-wrap:wrap}
 .social-links a{font-size:.875rem;border-bottom:1px solid var(--line);padding:5px 0}
-.email-contact{display:flex;flex-direction:column;align-items:flex-start;gap:2px;flex-basis:100%}
+.email-contact{display:flex;flex-wrap:wrap;align-items:baseline;gap:0 16px;flex-basis:100%}
 .email-link{appearance:none;background:transparent;border:0;border-bottom:1px solid var(--accent);border-radius:0;color:var(--accent);font-size:.875rem;font-weight:600;padding:5px 0;min-height:44px;text-align:left}
-.email-fallback{font:400 .75rem/1.8 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--muted)}
+.email-fallback{font:400 .75rem/1.8 var(--mono);color:var(--muted)}
+.email-copy{appearance:none;background:transparent;border:0;border-radius:0;color:var(--accent);font:400 .75rem/1.8 var(--mono);padding:10px 0;text-decoration:underline dotted;text-underline-offset:3px}
+.email-copy:hover{text-decoration-style:solid}
 .publication-keywords{margin-top:18px;font-size:.8125rem;line-height:1.9;color:var(--muted)}
-.keywords-label{display:block;margin-bottom:5px;font-size:.6875rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.keywords-label{display:block;margin-bottom:5px;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .publication-keywords ul{display:block;list-style:none;margin:0;padding:0}
-.publication-keywords li{display:inline}
-.publication-keywords li+li::before{content:" · ";color:var(--muted);white-space:pre}
+.publication-keywords li{display:inline;white-space:nowrap}
+/* Keywords never split internally; lines may only wrap at the separators. */
+.publication-keywords li+li::before{content:" · ";color:var(--muted);white-space:normal}
 .site-footer{max-width:1120px;margin:0 auto;padding:24px 0 32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font-size:.75rem}
 
 /* A: a familiar academic page with a permanent profile column */
@@ -185,17 +196,20 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 
 /* A separate, printable public CV */
 .cv-page{background:var(--paper)}
-.cv-main{max-width:960px;margin:54px auto 70px}
+.cv-main{--cv-date:150px;--cv-gap:24px;max-width:1120px;margin:54px auto 70px}
 .cv-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:20px}
-.cv-heading h1{font-family:var(--serif);font-size:3.5rem;letter-spacing:-.04em;margin:10px 0 16px}
+.cv-heading h1{font-family:var(--serif);font-size:3.25rem;line-height:1.25;letter-spacing:-.04em;margin:15px 0 16px}
 .cv-heading p:not(.eyebrow){font-size:.9375rem;color:var(--muted)}
 .print-button{padding:10px 15px;border:1px solid var(--line);background:transparent;color:var(--accent);font-size:.875rem;border-radius:4px;white-space:nowrap}
 .cv-main>section{margin-top:40px}
 .cv-main>section>h2{font-family:var(--serif);font-size:1.75rem;border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:22px}
-.cv-main .timeline{max-width:750px}
-.cv-main .timeline li{grid-template-columns:170px 1fr}
+/* Running text keeps a readable measure inside the full-width page. */
+.cv-main>section>p,.cv-main .plain-list,.cv-page .outreach-note{max-width:42rem}
+/* Every dated record shares one date column, so all entries start on the same edge. */
+.cv-main .timeline li,.cv-main .publication,.cv-records li{display:grid;grid-template-columns:var(--cv-date) minmax(0,1fr);gap:var(--cv-gap);align-items:baseline}
+.cv-main :is(.timeline-date,.paper-year),.cv-records li>span{font:400 .75rem/1.6 var(--mono);color:var(--muted);padding-top:0}
 .cv-main .timeline-entry{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}
-.cv-main .timeline-copy{min-width:0;flex:1}
+.cv-main .timeline-copy{min-width:0;flex:1;max-width:42rem}
 .cv-main .timeline-logos{display:flex;align-items:center;gap:10px;flex:none;padding-top:2px}
 .cv-main .timeline-logo{display:block;position:relative;overflow:hidden;flex:none}
 .cv-main .timeline-logo img{display:block;width:100%;height:100%;object-fit:contain}
@@ -207,16 +221,15 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .cv-main .timeline-logo--cas img{mix-blend-mode:multiply}
 .cv-main .timeline-logo--big img{position:absolute;left:50%;top:2px;width:201px;height:auto;max-width:none;transform:translateX(-50%)}
 .cv-main .contribution-note{margin-top:0}
-.cv-main .publication h3{font-size:1.2rem}
-.cv-page .journal,.cv-page .journal-badge{display:inline-flex;align-items:center;max-width:100%;min-height:34px;padding:6px 11px;border:1px solid #c9d8d1;border-radius:2px;background:#f3f7f5;color:var(--accent);font:500 .8125rem/1.45 var(--sans);overflow-wrap:break-word}
+.cv-page .cv-main .publication h3{font-size:1.2rem}
+.cv-page .journal-badge{display:inline-flex;align-items:center;max-width:100%;min-height:34px;padding:6px 11px;border:1px solid var(--line);border-radius:0;background:var(--soft);color:var(--accent);font:500 .8125rem/1.45 var(--sans);overflow-wrap:break-word}
 .cv-page .journal-badges{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:10px 0 0;padding:0}
 .cv-page .journal-badges li{display:flex;max-width:100%}
 .cv-page .reviewing-role{font-size:.875rem;font-weight:500;line-height:1.65;color:var(--ink)}
 .cv-page .reviewing-group+.reviewing-group{margin-top:22px}
 .cv-page .outreach-note{font-size:.875rem;line-height:1.8;margin-top:22px}
 .cv-records{list-style:none}
-.cv-records li{display:grid;grid-template-columns:80px 1fr;gap:1rem;margin-bottom:17px}
-.cv-records li>span{color:var(--muted);font-size:.875rem}
+.cv-records li{margin-bottom:17px}
 .cv-records p{font-size:.875rem;color:var(--muted);margin-top:3px}
 .plain-list{padding-left:22px}
 .plain-list li{margin-bottom:10px}
@@ -371,7 +384,7 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
  .theme-classic .research-item p:not(.eyebrow){font-size:.9375rem}
  .cv-main{margin:36px 22px 48px}
  .cv-heading{display:block}
- .cv-heading h1{font-size:3rem}
+ .cv-heading h1{font-size:2.75rem}
  .print-button{margin-top:18px}
  .cv-main .timeline li{display:block}
  .cv-main .timeline-date{margin-bottom:6px}
@@ -402,26 +415,26 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
 @media print{
  @page{size:A4;margin:16mm}
- body,.cv-page{font-size:10pt;line-height:1.55;background:#fff;color:#000}
- .site-header,.site-footer,.print-button,.skip-link,.email-link{display:none}
+ body,.cv-page,.notebook.cv-page{font-size:10pt;line-height:1.55;background:#fff;color:#000}
+ .site-header,.site-footer,.print-button,.skip-link,.email-link,.email-copy{display:none}
  .cv-main{margin:0;max-width:none}
  .cv-heading h1{font-size:30pt}
  .cv-heading p:not(.eyebrow){font-size:10pt}
  .cv-main>section{margin-top:22px}
- .cv-main>section>h2{font-size:16pt;margin-bottom:13px}
+ .cv-main>section>h2{font-size:16pt;margin-bottom:13px;break-after:avoid}
  .cv-main .publication{break-inside:avoid;display:block;padding:13px 0}
- .cv-main .publication h3{font-size:11pt}
- .paper-year{float:right;font-size:9pt}
+ .cv-page .cv-main .publication h3{font-size:11pt}
+ .paper-year{float:right;font-size:9pt;margin-left:1.5em}
  .paper-actions,details{display:none}
  .paper-meta,.paper-authors,.timeline p,.timeline-date,.cv-records li>span{font-size:9pt}
  .social-links{gap:18px}
  .social-links a{font-size:9pt}
- a{color:#000}
+ a,.notebook.cv-page a{color:#000}
  .timeline li,.cv-records li{break-inside:avoid}
  .timeline li{margin-bottom:14px}
  .cv-records li{margin-bottom:9px}
  .cv-records p{font-size:9pt}
- .cv-page .journal,.cv-page .journal-badge{font-size:9pt;min-height:0;padding:3pt 6pt;background:#fff;color:#000;border-color:#aaa;break-inside:avoid}
+ .cv-page .journal-badge{font-size:9pt;min-height:0;padding:3pt 6pt;background:#fff;color:#000;border-color:#aaa;break-inside:avoid}
  .cv-page .journal-badges{gap:4pt;margin-top:6pt}
  .cv-page .reviewing-group{break-inside:avoid}
  .cv-page .reviewing-role{font-size:9pt;break-after:avoid}
