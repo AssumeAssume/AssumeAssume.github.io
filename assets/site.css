@@ -202,7 +202,7 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .cv-main .timeline-logo--vib{width:72px;height:42px}
 .cv-main .timeline-logo--ku-leuven{width:82px;height:42px}
 .cv-main .timeline-logo--tsinghua,.cv-main .timeline-logo--cas,.cv-main .timeline-logo--big,.cv-main .timeline-logo--dlut{width:48px;height:48px}
-.cv-main .timeline-logo--tsinghua img{position:absolute;left:50%;top:50%;width:112px;height:48px;max-width:none;transform:translate(-50%,-50%) scale(1.25);mix-blend-mode:multiply}
+.cv-main .timeline-logo--tsinghua img{position:absolute;left:50%;top:50%;width:156px;height:auto;max-width:none;transform:translate(-50%,-50%);mix-blend-mode:multiply}
 .cv-main .timeline-logo--cas img{mix-blend-mode:multiply}
 .cv-main .timeline-logo--big img{position:absolute;left:50%;top:2px;width:120px;height:auto;max-width:none;transform:translateX(-50%)}
 .cv-main .contribution-note{margin-top:0}

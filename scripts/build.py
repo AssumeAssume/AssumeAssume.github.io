@@ -20,7 +20,7 @@ CV_LOGOS = {
     "vib": "vib.png",
     "ku-leuven": "ku-leuven.svg",
     "tsinghua": "tsinghua.jpg",
-    "cas": "cas.jpg",
+    "cas": "cas.png",
     "big": "big.png",
     "dlut": "dlut-emblem.png",
 }
