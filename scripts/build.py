@@ -16,6 +16,14 @@ from locus import research_locus
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "_site"
 THEMES = {"classic": "a", "minimal": "b", "editorial": "c"}
+CV_LOGOS = {
+    "vib": "vib.png",
+    "ku-leuven": "ku-leuven.svg",
+    "tsinghua": "tsinghua.jpg",
+    "cas": "cas.jpg",
+    "big": "big.png",
+    "dlut": "dlut-emblem.png",
+}
 
 
 def esc(value):
@@ -196,12 +204,20 @@ def publications(profile, prefix):
 <p class="contribution-note">* Equal contribution. Author lists are abbreviated.</p><div class="publication-list">{items}</div></section>'''
 
 
-def timeline(items):
+def timeline(items, show_logos=False, prefix=""):
     rows = []
     for item in items:
         detail = f'<p class="secondary">{esc(item["detail"])}</p>' if item.get('detail') else ''
         funding = f'<p class="secondary">{esc(item["funding"])}</p>' if item.get('funding') else ''
-        rows.append(f'''<li><span class="timeline-date">{esc(item['period'])}</span><div><h4>{esc(item['title'])}</h4><p>{esc(item['institution'])}</p>{detail}{funding}</div></li>''')
+        copy = f'<h4>{esc(item["title"])}</h4><p>{esc(item["institution"])}</p>{detail}{funding}'
+        if show_logos and item.get('logos'):
+            marks = []
+            for logo in item['logos']:
+                if logo not in CV_LOGOS:
+                    raise ValueError(f"Unknown CV logo: {logo}")
+                marks.append(f'<span class="timeline-logo timeline-logo--{logo}"><img src="{prefix}assets/logos/{CV_LOGOS[logo]}" alt="" loading="lazy"></span>')
+            copy = f'<div class="timeline-entry"><div class="timeline-copy">{copy}</div><div class="timeline-logos" aria-hidden="true">{"".join(marks)}</div></div>'
+        rows.append(f'''<li><span class="timeline-date">{esc(item['period'])}</span><div>{copy}</div></li>''')
     return '<ol class="timeline">' + ''.join(rows) + '</ol>'
 
 
@@ -337,7 +353,7 @@ def cv_page(profile):
     canonical = profile['site_url'].rstrip('/') + '/cv/' if profile['site_url'] else ''
     return head(profile, "../", title=profile['name'] + ' | Curriculum Vitae', canonical=canonical) + f'''<body class="theme-minimal cv-page">{header(profile, '../', '../index.html')}<main id="main" class="cv-main"><div class="cv-heading"><div><p class="eyebrow">Curriculum vitae</p><h1>{esc(profile['name'])}</h1><p>{esc(profile['role'])} · {esc(profile['affiliation'])}</p></div><button type="button" class="print-button" data-print>Print / Save PDF</button></div>
 {socials(profile, include_email=True)}<section><h2>Research interests</h2><p>{esc(profile['intro'])}</p><p>{esc(profile['direction'])}</p></section>
-<section><h2>Academic positions</h2>{timeline(profile['positions'])}</section><section><h2>Education</h2>{timeline(profile['education'])}</section>
+<section><h2>Academic positions</h2>{timeline(profile['positions'], show_logos=True, prefix='../')}</section><section><h2>Education</h2>{timeline(profile['education'], show_logos=True, prefix='../')}</section>
 <section><h2>Publications</h2><p class="contribution-note">* Equal contribution. Author lists are abbreviated; complete authors are provided in BibTeX.</p>{listing}</section>
 <section><h2>Honors &amp; awards</h2><ul class="cv-records">{awards}</ul></section><section><h2>Selected presentations</h2><ul class="cv-records">{talks}</ul></section>
 <section><h2>Teaching &amp; mentoring</h2>{items('teaching')}</section><section><h2>Service &amp; outreach</h2>{render_service(profile)}</section></main>{footer(profile)}<script src="../assets/site.js" defer></script></body></html>'''
