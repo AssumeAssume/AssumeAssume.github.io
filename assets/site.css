@@ -201,10 +201,11 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .cv-main .timeline-logo img{display:block;width:100%;height:100%;object-fit:contain}
 .cv-main .timeline-logo--vib{width:72px;height:42px}
 .cv-main .timeline-logo--ku-leuven{width:82px;height:42px}
-.cv-main .timeline-logo--tsinghua,.cv-main .timeline-logo--cas,.cv-main .timeline-logo--big,.cv-main .timeline-logo--dlut{width:48px;height:48px}
-.cv-main .timeline-logo--tsinghua img{position:absolute;left:50%;top:50%;width:156px;height:auto;max-width:none;transform:translate(-50%,-50%);mix-blend-mode:multiply}
+.cv-main .timeline-logo--tsinghua,.cv-main .timeline-logo--cas,.cv-main .timeline-logo--big,.cv-main .timeline-logo--dlut{width:76px;height:76px}
+.cv-main .timeline-logo--tsinghua img{position:absolute;left:calc(50% + 2px);top:50%;width:234px;height:auto;max-width:none;transform:translate(-50%,-50%);mix-blend-mode:multiply}
+.cv-main .timeline-logo--cas img,.cv-main .timeline-logo--dlut img{width:72px;height:72px;margin:2px}
 .cv-main .timeline-logo--cas img{mix-blend-mode:multiply}
-.cv-main .timeline-logo--big img{position:absolute;left:50%;top:2px;width:120px;height:auto;max-width:none;transform:translateX(-50%)}
+.cv-main .timeline-logo--big img{position:absolute;left:50%;top:2px;width:201px;height:auto;max-width:none;transform:translateX(-50%)}
 .cv-main .contribution-note{margin-top:0}
 .cv-main .publication h3{font-size:1.2rem}
 .cv-page .journal,.cv-page .journal-badge{display:inline-flex;align-items:center;max-width:100%;min-height:34px;padding:6px 11px;border:1px solid #c9d8d1;border-radius:2px;background:#f3f7f5;color:var(--accent);font:500 .8125rem/1.45 var(--sans);overflow-wrap:break-word}
