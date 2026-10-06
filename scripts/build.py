@@ -100,6 +100,11 @@ def head(profile, prefix, title=None, lang="en", canonical="", robots="", styles
     if profile.get("email"):
         version = hashlib.sha256((ROOT / "assets/contact.js").read_bytes()).hexdigest()[:12]
         contact_script = f'<script src="{prefix}assets/contact.js?v={version}" defer></script>'
+    visits = profile.get("visits") or {}
+    if visits.get("endpoint"):
+        version = hashlib.sha256((ROOT / "assets/visits.js").read_bytes()).hexdigest()[:12]
+        host = urlsplit(profile["site_url"]).hostname
+        contact_script += f'<script src="{prefix}assets/visits.js?v={version}" data-endpoint="{esc(visits["endpoint"])}" data-site="{esc(visits["site"])}" data-host="{esc(host)}" defer></script>'
     return f'''<!doctype html>
 <html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title or profile['name'] + ' | Regulatory Genomics')}</title>
@@ -278,7 +283,8 @@ def notebook_header(profile, prefix="", home="", current=""):
 
 def notebook_footer(profile):
     github = next(link['url'] for link in profile['links'] if link['label'] == 'GitHub')
-    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span></footer>'
+    privacy = '<span class="footer-note">Page views are logged with approximate location and a truncated IP; no cookies.</span>' if (profile.get('visits') or {}).get('endpoint') else ''
+    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span>{privacy}</footer>'
 
 
 def selected_work(profile, prefix):
@@ -439,6 +445,9 @@ def main():
     date.fromisoformat(profile["updated"])
     if profile["site_url"] and urlsplit(profile["site_url"]).scheme not in {"https", "http"}:
         raise ValueError("site_url must be an http(s) URL or empty")
+    visits = profile.get("visits") or {}
+    if visits.get("endpoint") and (urlsplit(visits["endpoint"]).scheme != "https" or not profile["site_url"] or not re.fullmatch(r"[a-z0-9-]+", visits.get("site", ""))):
+        raise ValueError("visits needs an https endpoint, a URL-safe site name and site_url")
     ids = [p["id"] for p in profile["publications"]]
     if len(ids) != len(set(ids)) or any(not re.fullmatch(r"[a-z0-9-]+", p) for p in ids):
         raise ValueError("Publication IDs must be unique URL-safe names")

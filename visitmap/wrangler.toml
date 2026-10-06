@@ -1,0 +1,19 @@
+name = "visitmap"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Site names accepted by /hit; the first one is shown on the dashboard by default.
+SITES = "assumeassume"
+# Pages allowed to report visits.
+ALLOWED_ORIGINS = "https://assumeassume.github.io"
+# Calendar days ("today", "last 7 days") follow this time zone.
+TIMEZONE = "Europe/Brussels"
+# Truncated IP networks are cleared from records older than this.
+RETENTION_DAYS = "365"
+# Secrets, set with `wrangler secret put`: DASHBOARD_PASSWORD, IP_SALT.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "visitmap"
+database_id = "e87dca34-593f-4b5d-ac19-1a35f6018476"

@@ -109,7 +109,8 @@
 .notebook .news-list a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
 .notebook .news-list a:hover{text-decoration-color:var(--accent)}
 .link-arrow{color:var(--accent)}
-.notebook .site-footer{color:var(--muted);font:400 .75rem/1.8 var(--mono);padding:20px 0 30px}
+.notebook .site-footer{color:var(--muted);font:400 .75rem/1.8 var(--mono);padding:20px 0 30px;flex-wrap:wrap;row-gap:4px}
+.footer-note{flex-basis:100%}
 /* Archive and CV pages share the header's 1120px container so all left edges align. */
 .archive-main{max-width:1120px;margin:54px auto 64px}
 .notebook .eyebrow{font:400 .75rem/1.8 var(--mono);text-transform:none;letter-spacing:0}

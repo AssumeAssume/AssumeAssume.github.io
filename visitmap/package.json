@@ -1,0 +1,19 @@
+{
+  "name": "visitmap",
+  "private": true,
+  "description": "Cookie-free visitor map for the website, running on Cloudflare Workers and D1",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8788",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute visitmap --remote --file=schema.sql",
+    "db:init:local": "wrangler d1 execute visitmap --local --file=schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "4.147.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "workerd@1.20261001.1": true
+  }
+}
