@@ -283,8 +283,7 @@ def notebook_header(profile, prefix="", home="", current=""):
 
 def notebook_footer(profile):
     github = next(link['url'] for link in profile['links'] if link['label'] == 'GitHub')
-    privacy = '<span class="footer-note">Page views are logged with approximate location and a truncated IP; no cookies.</span>' if (profile.get('visits') or {}).get('endpoint') else ''
-    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span>{privacy}</footer>'
+    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span></footer>'
 
 
 def selected_work(profile, prefix):
