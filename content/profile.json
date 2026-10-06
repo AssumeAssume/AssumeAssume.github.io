@@ -34,7 +34,11 @@
     ]
   },
   "email": {"user": "bHhmMDA3MDA3", "domain": "Z21haWwuY29t"},
-  "visits": {"endpoint": "https://visitmap.visitmap.workers.dev/hit", "site": "assumeassume"},
+  "visits": {
+    "endpoint": "https://visitmap.visitmap.workers.dev/hit",
+    "site": "assumeassume",
+    "privacy": "IP addresses are stored only in masked form (such as 203.0.113.*), used solely for visit statistics, and deleted after 30 days."
+  },
   "links": [
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
     {"label": "GitHub", "url": "https://github.com/AssumeAssume"},

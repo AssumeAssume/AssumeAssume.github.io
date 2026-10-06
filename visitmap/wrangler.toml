@@ -9,9 +9,13 @@ SITES = "assumeassume"
 ALLOWED_ORIGINS = "https://assumeassume.github.io"
 # Calendar days ("today", "last 7 days") follow this time zone.
 TIMEZONE = "Europe/Brussels"
-# Truncated IP networks are cleared from records older than this.
-RETENTION_DAYS = "365"
+# Truncated IP networks are cleared from records older than this (the website's privacy page says 30 days).
+RETENTION_DAYS = "30"
 # Secrets, set with `wrangler secret put`: DASHBOARD_PASSWORD, IP_SALT.
+
+# Daily clean-up of truncated IP networks past RETENTION_DAYS.
+[triggers]
+crons = ["17 3 * * *"]
 
 [[d1_databases]]
 binding = "DB"

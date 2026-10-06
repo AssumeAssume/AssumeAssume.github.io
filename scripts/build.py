@@ -281,9 +281,16 @@ def notebook_header(profile, prefix="", home="", current=""):
     return f'''<a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="header-inner"><a class="brand" href="{home or '#about'}">{esc(profile['name'])}</a><nav aria-label="Main navigation">{links}</nav></div></header>'''
 
 
-def notebook_footer(profile):
+def privacy_text(profile):
+    """The privacy statement, published only while visits are being counted."""
+    visits = profile.get("visits") or {}
+    return visits.get("privacy", "") if visits.get("endpoint") else ""
+
+
+def notebook_footer(profile, prefix=""):
     github = next(link['url'] for link in profile['links'] if link['label'] == 'GitHub')
-    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span></footer>'
+    privacy = f'<a href="{prefix}privacy/">Privacy</a> · ' if privacy_text(profile) else ''
+    return f'<footer class="site-footer"><span>© {profile["updated"][:4]} {esc(profile["name"])} / {external(github, "AssumeAssume")}</span><span>{privacy}Updated <time datetime="{profile["updated"]}">{profile["updated"]}</time></span></footer>'
 
 
 def selected_work(profile, prefix):
@@ -326,13 +333,18 @@ def render_editorial(profile, prefix, preview):
     canonical = profile['site_url'].rstrip('/') + '/' if profile['site_url'] and not preview else ''
     html_start = head(profile, prefix, title=profile['name'] + ' · ' + profile['chinese_name'] + ' | Gene regulation', canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css', 'story.css'))
     notebook = profile['notebook']
-    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><p class="name-pronunciation">Pronounced like: <span>{esc(profile['pronunciation'])}</span></p><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">All publications →</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{news(profile)}{selected_work(profile, prefix)}{currently_exploring(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
+    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><p class="name-pronunciation">Pronounced like: <span>{esc(profile['pronunciation'])}</span></p><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">All publications →</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{news(profile)}{selected_work(profile, prefix)}{currently_exploring(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile, prefix)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
 
 
 def publication_page(profile):
     listing = ''.join(publication(profile, p, '../', full=True) for p in profile['publications'])
     canonical = profile['site_url'].rstrip('/') + '/publications/' if profile['site_url'] else ''
-    return head(profile, '../', title=profile['name'] + ' | Publications', canonical=canonical, styles=('editorial.css',)) + f'''<body class="theme-editorial editorial-v2 notebook publication-archive">{notebook_header(profile, '../', '../index.html', current='publications')}<main id="main" class="archive-main"><p class="eyebrow">Complete bibliography</p><h1>Publications</h1><p class="archive-intro">Research papers and reviews, with references, code, and contributions.</p><p class="contribution-note">* Equal contribution. Author lists are abbreviated; complete authors are provided in BibTeX.</p><div id="publications" class="publication-list">{listing}</div><a class="notebook-link" href="../index.html#research">← Back to selected work</a></main>{notebook_footer(profile)}</body></html>'''
+    return head(profile, '../', title=profile['name'] + ' | Publications', canonical=canonical, styles=('editorial.css',)) + f'''<body class="theme-editorial editorial-v2 notebook publication-archive">{notebook_header(profile, '../', '../index.html', current='publications')}<main id="main" class="archive-main"><p class="eyebrow">Complete bibliography</p><h1>Publications</h1><p class="archive-intro">Research papers and reviews, with references, code, and contributions.</p><p class="contribution-note">* Equal contribution. Author lists are abbreviated; complete authors are provided in BibTeX.</p><div id="publications" class="publication-list">{listing}</div><a class="notebook-link" href="../index.html#research">← Back to selected work</a></main>{notebook_footer(profile, '../')}</body></html>'''
+
+
+def privacy_page(profile):
+    canonical = profile['site_url'].rstrip('/') + '/privacy/' if profile['site_url'] else ''
+    return head(profile, '../', title=profile['name'] + ' | Privacy', canonical=canonical, styles=('editorial.css',)) + f'''<body class="notebook privacy-page">{notebook_header(profile, '../', '../index.html')}<main id="main" class="archive-main"><h1>Privacy</h1><p class="archive-intro">{esc(privacy_text(profile))}</p></main>{notebook_footer(profile, '../')}</body></html>'''
 
 
 def render_site(profile, theme, prefix="", preview=False):
@@ -389,7 +401,7 @@ def cv_page(profile):
 <section><h2>Academic positions</h2>{timeline(profile['positions'], show_logos=True, prefix='../')}</section><section><h2>Education</h2>{timeline(profile['education'], show_logos=True, prefix='../')}</section>
 <section><h2>Publications</h2><p class="contribution-note">* Equal contribution. Author lists are abbreviated; complete authors are provided in BibTeX.</p>{listing}</section>
 <section><h2>Honors &amp; awards</h2><ul class="cv-records">{awards}</ul></section><section><h2>Selected presentations</h2><ul class="cv-records">{talks}</ul></section>
-<section><h2>Teaching &amp; mentoring</h2>{items('teaching')}</section><section><h2>Service &amp; outreach</h2>{render_service(profile)}</section></main>{notebook_footer(profile)}<script src="../assets/site.js" defer></script></body></html>'''
+<section><h2>Teaching &amp; mentoring</h2>{items('teaching')}</section><section><h2>Service &amp; outreach</h2>{render_service(profile)}</section></main>{notebook_footer(profile, '../')}<script src="../assets/site.js" defer></script></body></html>'''
 
 
 def preview_page(profile):
@@ -459,6 +471,8 @@ def main():
     write("index.html", render_site(profile, theme))
     write("cv/index.html", cv_page(profile))
     write("publications/index.html", publication_page(profile))
+    if privacy_text(profile):
+        write("privacy/index.html", privacy_page(profile))
     write(".nojekyll", "")
     for pub in profile["publications"]:
         write(f'citations/{pub["id"]}.bib', bibtex(pub))

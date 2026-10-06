@@ -3,6 +3,7 @@
 //   GET  /            private dashboard, protected by HTTP Basic auth (DASHBOARD_PASSWORD)
 //   GET  /api/points  aggregated statistics for the dashboard
 //   GET  /api/feed    most recent page views
+// A daily cron trigger clears truncated IP networks older than RETENTION_DAYS.
 import { dashboard } from './dashboard.js';
 
 const DAY = 86400000;
@@ -13,7 +14,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     try {
-      if (url.pathname === '/hit') return await hit(request, env, ctx);
+      if (url.pathname === '/hit') return await hit(request, env);
       if (request.method !== 'GET' && request.method !== 'HEAD') return text('Method not allowed', 405);
       const denied = await authorize(request, env);
       if (denied) return denied;
@@ -30,9 +31,13 @@ export default {
       return text('Internal error', 500);
     }
   },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(expire(env));
+  },
 };
 
-async function hit(request, env, ctx) {
+async function hit(request, env) {
   const origin = request.headers.get('origin') || '';
   const cors = list(env.ALLOWED_ORIGINS).includes(origin) ? { 'access-control-allow-origin': origin, vary: 'Origin' } : null;
   if (request.method === 'OPTIONS') {
@@ -80,9 +85,6 @@ async function hit(request, env, ctx) {
     page,
     referrerHost(data.ref, origin),
   ).run();
-
-  // Clearing old networks is cheap, so it piggybacks on a small share of page views.
-  if (Math.random() < 0.02) ctx.waitUntil(expire(env));
   return accepted;
 }
 

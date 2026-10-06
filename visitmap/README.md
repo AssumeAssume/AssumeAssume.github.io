@@ -5,7 +5,7 @@ A small, cookie-free visitor map for the website, running on Cloudflare Workers 
 - `assets/visits.js` on the website sends one record per page view to `POST /hit`.
 - The Worker stores the time, page, external referrer host, Cloudflare's approximate location
   (country, region, city) and network owner, and only the /24 (IPv4) or /48 (IPv6) part of the IP.
-  Networks are cleared from records older than `RETENTION_DAYS`.
+  A daily cron trigger clears networks from records older than `RETENTION_DAYS` (30 days).
 - `GET /` is a password-protected dashboard: map, totals, rankings and the latest visits.
 
 ## One-time setup
