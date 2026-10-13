@@ -2,6 +2,7 @@
 """Check the generated website's links, anchors and publishable file types."""
 from html.parser import HTMLParser
 from pathlib import Path
+import re
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1] / "_site"
@@ -40,11 +41,15 @@ def main():
     if not (ROOT / "index.html").is_file():
         raise SystemExit("Build the website first.")
     pages = {}
+    errors = []
     for path in ROOT.rglob("*.html"):
+        if path.parent == ROOT and re.fullmatch(r"google[0-9a-f]+\.html", path.name):
+            if path.read_text(encoding="utf-8").strip() != f"google-site-verification: {path.name}":
+                errors.append(f"{path.name}: Invalid Google site verification content")
+            continue
         page = Page(path)
         page.feed(path.read_text(encoding="utf-8"))
         pages[path.resolve()] = page
-    errors = []
     for path, page in pages.items():
         if not page.lang or page.main_count != 1 or page.h1_count != 1:
             errors.append(f"{path.relative_to(ROOT)}: Missing language or invalid main/h1 count")

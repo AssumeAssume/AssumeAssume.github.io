@@ -468,6 +468,8 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(ROOT / "assets", OUT / "assets")
+    for verification in ROOT.glob("google*.html"):
+        shutil.copyfile(verification, OUT / verification.name)
     write("index.html", render_site(profile, theme))
     write("cv/index.html", cv_page(profile))
     write("publications/index.html", publication_page(profile))
