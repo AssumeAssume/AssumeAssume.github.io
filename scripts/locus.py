@@ -27,18 +27,20 @@ def _svg(theme, title, description, drawing):
     </svg>'''
 
 
-def _panel(theme, drawing, controls, caption, note, source, source_label, selected=False):
+def _panel(theme, topic, drawing, controls, caption, note, source=None, source_label='', selected=False):
     hidden = '' if selected else ' hidden'
+    link = (f'<a class="locus-source" href="{source}">{escape(source_label)} '
+            f'<span aria-hidden="true">↗</span></a>') if source else ''
     return f'''<div id="lens-{theme}" class="lens-panel" role="tabpanel"
       aria-labelledby="tab-{theme}"{hidden}>
       {drawing}
       <p class="locus-note">{escape(note)}</p>
-      <div class="locus-controls" role="group" aria-label="Explore {source_label}">
+      <div class="locus-controls" role="group" aria-label="Explore {escape(topic)}">
         {''.join(controls)}
       </div>
       <p id="locus-{theme}-caption" class="locus-caption" role="status"
         aria-live="polite" aria-atomic="true">{escape(caption)}</p>
-      <a class="locus-source" href="{source}">{escape(source_label)} <span aria-hidden="true">↗</span></a>
+      {link}
     </div>'''
 
 
@@ -178,19 +180,18 @@ def research_locus():
     ]
 
     return f'''<div class="research-locus">
-      <div class="locus-topline"><span>At the locus</span><span>Conceptual illustration</span></div>
       <div class="lens-tabs" role="tablist" aria-label="Research themes">
         <button id="tab-line1" type="button" role="tab" data-lens="line1"
-          aria-selected="true" aria-controls="lens-line1" tabindex="0">LINE-1</button>
+          aria-selected="false" aria-controls="lens-line1" tabindex="-1">LINE-1</button>
         <button id="tab-ankrd11" type="button" role="tab" data-lens="ankrd11"
           aria-selected="false" aria-controls="lens-ankrd11" tabindex="-1">ANKRD11</button>
         <button id="tab-ai" type="button" role="tab" data-lens="ai"
-          aria-selected="false" aria-controls="lens-ai" tabindex="-1">Regulatory AI</button>
+          aria-selected="true" aria-controls="lens-ai" tabindex="0">Regulatory AI</button>
       </div>
-      {_panel('line1', line1, line1_controls, line1_caption,
-               'Distance is only part of the story.', '#pub-line1', 'Nature Genetics · 2024', True)}
-      {_panel('ankrd11', ankrd11, ankrd11_controls, ankrd11_caption,
+      {_panel('line1', 'LINE-1', line1, line1_controls, line1_caption,
+               'Distance is only part of the story.', '#pub-line1', 'Nature Genetics · 2024')}
+      {_panel('ankrd11', 'ANKRD11', ankrd11, ankrd11_controls, ankrd11_caption,
                'Transcription also needs restraint.', '#pub-ankrd11', 'Cell · 2026')}
-      {_panel('ai', ai, ai_controls, ai_caption,
-               'Prediction is useful. Explanation is the goal.', '#currently-exploring', 'Current research direction')}
+      {_panel('ai', 'Regulatory AI', ai, ai_controls, ai_caption,
+               'Prediction is useful. Explanation is the goal.', selected=True)}
     </div>'''

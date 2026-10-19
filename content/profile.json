@@ -26,7 +26,6 @@
     "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
     "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with [Dr. Stein Aerts](https://aertslab.org/) on gene regulation, enhancers, and interpretable AI.",
-    "currently_exploring": "How do promoters and multiple enhancers work together across a gene locus? I’m exploring interpretable models that connect their individual contributions to gene expression.",
     "selected_work": [
       {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
       {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "How is LINE-1 regulated, and what does it do in the human genome?"},

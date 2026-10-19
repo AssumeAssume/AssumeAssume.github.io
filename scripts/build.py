@@ -30,13 +30,19 @@ def esc(value):
     return html.escape(str(value), quote=True)
 
 
-UNBREAKABLE = re.compile(r"\b(?:Dr|Prof)\. [A-Z][\w-]+(?: [A-Z][\w-]+)?|\bKU Leuven\b|\bet al\.")
+UNBREAKABLE = re.compile(r"\b(?:Dr|Prof)\. [A-Z]|\bKU Leuven\b|\bet al\.")
 
 
 def prose(value):
     """Escape running text, keeping personal names and fixed phrases on one line."""
     text = UNBREAKABLE.sub(lambda match: match.group(0).replace(" ", "\u00a0"), str(value))
     return esc(text).replace("\u00a0", "&nbsp;")
+
+
+def heading(value):
+    """Escape a heading, keeping its last two words together so no line holds a single word."""
+    head, _, last = str(value).rpartition(" ")
+    return esc(f"{head}\u00a0{last}" if " " in head else value).replace("\u00a0", "&nbsp;")
 
 
 def author_line(profile, pub):
@@ -212,7 +218,7 @@ def paper_links(pub, prefix, css):
 
 def publication(profile, pub, prefix, full=False):
     authors = author_line(profile, pub)
-    title = external(pub["url"], esc(pub["title"])) if pub["url"] else esc(pub["title"])
+    title = external(pub["url"], heading(pub["title"])) if pub["url"] else heading(pub["title"])
     links = paper_links(pub, prefix, "paper-link")
     detail = f'<details><summary>Summary &amp; contribution</summary><p>{esc(pub["summary"])}</p><p><strong>My contribution.</strong> {esc(pub["contribution"])}</p></details>'
     volume = f' · {esc(pub["volume"])}: {esc(pub["pages"])}' if pub.get("volume") else ""
@@ -311,9 +317,9 @@ def selected_work(profile, prefix):
                 raise ValueError("figure dimensions must be positive integers")
             figure_version = hashlib.sha256((ROOT / 'assets' / pub['figure']).read_bytes()).hexdigest()[:12]
             figure = f'<figure class="study-figure"><img src="{prefix}assets/{esc(pub["figure"])}?v={figure_version}" alt="{esc(pub["figure_alt"])}" width="{width}" height="{height}" loading="lazy">{caption}</figure>'
-        question = f'<p>{esc(story["question"])}</p>' if story.get('question') else ''
-        rows += f'''<article id="pub-{esc(pub['id'])}" class="selected-study{' with-cover' if image else ''}"><div class="work-meta"><span>{pub['year']} / {esc(pub['journal'])}</span><span>{esc(pub['note'])}</span></div><div class="study-grid"><div class="study-question"><h3>{esc(story['title'])}</h3>{question}{figure}{image}</div><div class="study-result"><p class="finding">{esc(pub['summary'])}</p><p class="my-part"><strong>My part.</strong> {esc(pub['contribution'])}</p>{publication_keywords(pub)}<div class="work-actions">{actions}</div><details class="publication-details"><summary>Publication details</summary><h4>{external(pub['url'], esc(pub['title']))}</h4><p>{authors}</p><p>{esc(pub['journal'])} · {pub['year']} · DOI: {esc(pub['doi'])}</p></details></div></div></article>'''
-    return f'''<section id="research" class="notebook-section selected-work"><div class="notebook-section-heading"><h2>Selected work</h2><p>Questions, discoveries, and my part in them.</p></div>{rows}<div id="publications" class="bibliography-link"><a class="notebook-link" href="{prefix}publications/">Complete publication list →</a><span>Full references and BibTeX</span></div></section>'''
+        question = f'<p>{heading(story["question"])}</p>' if story.get('question') else ''
+        rows += f'''<article id="pub-{esc(pub['id'])}" class="selected-study{' with-cover' if image else ''}"><div class="work-meta"><span>{pub['year']} / {esc(pub['journal'])}</span><span>{esc(pub['note'])}</span></div><div class="study-grid"><div class="study-question"><h3>{heading(story['title'])}</h3>{question}{figure}{image}</div><div class="study-result"><p class="finding">{esc(pub['summary'])}</p><p class="my-part"><strong>My part.</strong> {esc(pub['contribution'])}</p>{publication_keywords(pub)}<div class="work-actions">{actions}</div><details class="publication-details"><summary>Publication details</summary><h4>{external(pub['url'], heading(pub['title']))}</h4><p>{authors}</p><p>{esc(pub['journal'])} · {pub['year']} · DOI: {esc(pub['doi'])}</p></details></div></div></article>'''
+    return f'''<section id="research" class="notebook-section selected-work"><div class="notebook-section-heading"><h2>Selected work</h2></div>{rows}<div id="publications" class="bibliography-link"><a class="notebook-link" href="{prefix}publications/">Complete publication list →</a><span>Full references and BibTeX</span></div></section>'''
 
 
 def notebook_about(profile, prefix):
@@ -321,19 +327,15 @@ def notebook_about(profile, prefix):
     return f'''<section id="about-me" class="notebook-about" aria-labelledby="about-title"><figure class="portrait"><img src="{prefix}assets/{esc(profile['portrait'])}" alt="Xiufeng Li outdoors in front of a mountain landscape" width="501" height="504"><figcaption>{esc(profile['name'])} / AssumeAssume</figcaption></figure><div class="about-copy"><h2 id="about-title">About</h2>{formatted_paragraphs(paragraphs)}<a class="notebook-link" href="{prefix}cv/">The full academic path → CV</a></div></section>'''
 
 
-def currently_exploring(profile):
-    return f'''<aside id="currently-exploring" class="current-exploration" aria-labelledby="currently-title"><h3 id="currently-title">Currently exploring</h3><p>{esc(profile['notebook']['currently_exploring'])}</p></aside>'''
-
-
 def notebook_contact(profile, prefix):
-    return f'''<section id="contact" class="notebook-contact"><div><h2>Research &amp; conversations.</h2><p>Find my papers, code, and professional profile.</p></div><div class="contact-links">{socials(profile, include_email=True)}<a class="notebook-link" href="{prefix}cv/">Curriculum vitae →</a></div></section>'''
+    return f'''<section id="contact" class="notebook-contact"><div><h2>Get in touch</h2></div><div class="contact-links">{socials(profile, include_email=True)}<a class="notebook-link" href="{prefix}cv/">Curriculum vitae →</a></div></section>'''
 
 
 def render_editorial(profile, prefix, preview):
     canonical = profile['site_url'].rstrip('/') + '/' if profile['site_url'] and not preview else ''
     html_start = head(profile, prefix, title=profile['name'] + ' · ' + profile['chinese_name'] + ' | Gene regulation', canonical=canonical, robots='noindex, nofollow' if preview else '', styles=('editorial.css', 'story.css'))
     notebook = profile['notebook']
-    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><p class="name-pronunciation">Pronounced like: <span>{esc(profile['pronunciation'])}</span></p><h2 class="hero-question">{esc(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{esc(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">All publications →</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{news(profile)}{selected_work(profile, prefix)}{currently_exploring(profile)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile, prefix)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
+    return html_start + f'''<body class="theme-editorial editorial-v2 notebook">{notebook_header(profile, prefix)}<main id="main"><section id="about" class="hero"><div class="hero-inner"><div class="hero-copy"><h1><span class="latin-name">{esc(profile['name'])}</span><span class="chinese-name" lang="zh-CN">· {esc(profile['chinese_name'])}</span></h1><p class="name-pronunciation">Pronounced like: <span>{esc(profile['pronunciation'])}</span></p><h2 class="hero-question">{heading(notebook['question'])}</h2><p class="hero-intro">{esc(notebook['intro'])}</p><p class="hero-affiliation">{heading(notebook['byline'])}</p><div class="hero-links"><a class="primary-link" href="#research">Explore my research →</a><a href="{prefix}publications/">All publications →</a></div></div>{research_locus()}</div></section><div class="main-content">{notebook_about(profile, prefix)}{news(profile)}{selected_work(profile, prefix)}{notebook_contact(profile, prefix)}</div></main>{notebook_footer(profile, prefix)}<script src="{prefix}assets/editorial.js" defer></script></body></html>'''
 
 
 def publication_page(profile):
