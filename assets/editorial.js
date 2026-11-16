@@ -26,37 +26,36 @@ document.querySelectorAll('.research-locus').forEach(locus => {
     });
   });
 
+  // Each figure explains itself: choosing one of its parts highlights it and shows its caption.
   locus.querySelectorAll('.lens-panel').forEach(panel => {
-    const controls = [...panel.querySelectorAll('.locus-controls [data-locus-focus]')];
-    const triggers = [...panel.querySelectorAll('[data-locus-focus]')];
+    const parts = [...panel.querySelectorAll('[data-locus-focus]')];
     const features = [...panel.querySelectorAll('[data-locus-feature]')];
     const caption = panel.querySelector('.locus-caption');
 
-    function selectFeature(button) {
-      const target = button.dataset.locusFocus;
-      triggers.forEach(control => {
-        const selected = control.dataset.locusFocus === target;
-        control.classList.toggle('is-active', selected);
-        control.setAttribute('aria-pressed', String(selected));
+    function selectPart(part) {
+      const target = part.dataset.locusFocus;
+      parts.forEach(item => {
+        item.classList.toggle('is-active', item === part);
+        item.setAttribute('aria-pressed', String(item === part));
       });
       features.forEach(feature => {
         const matches = feature.dataset.locusFeature.split(/\s+/).includes(target);
         feature.classList.toggle('is-emphasized', matches);
       });
-      const textControl = controls.find(control => control.dataset.locusFocus === target);
-      if (caption && textControl) caption.textContent = textControl.dataset.locusCaption;
+      // Rewriting unchanged text would make screen readers announce the caption again.
+      if (caption && caption.textContent !== part.dataset.locusCaption) caption.textContent = part.dataset.locusCaption;
     }
 
-    triggers.forEach(button => {
-      button.addEventListener('click', () => selectFeature(button));
-      if (button.getAttribute('role') !== 'button') return;
-      button.addEventListener('keydown', event => {
+    parts.forEach(part => {
+      part.addEventListener('click', () => selectPart(part));
+      part.addEventListener('keydown', event => {
         if (event.key !== 'Enter' && event.key !== ' ') return;
         event.preventDefault();
-        selectFeature(button);
+        selectPart(part);
       });
     });
-    const selected = controls.find(button => button.getAttribute('aria-pressed') === 'true');
-    if (selected) selectFeature(selected);
+    // The markup marks one part as chosen; this also highlights what connects to it.
+    const chosen = parts.find(part => part.getAttribute('aria-pressed') === 'true');
+    if (chosen) selectPart(chosen);
   });
 });

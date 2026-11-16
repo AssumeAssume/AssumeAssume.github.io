@@ -23,7 +23,6 @@
   "direction": "I aim to connect mechanistic insights with interpretable AI to model how enhancers and gene loci integrate regulatory information across cell states.",
   "notebook": {
     "question": "How does a gene’s neighborhood shape its expression?",
-    "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
     "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with [Dr. Stein Aerts](https://aertslab.org/) on gene regulation, enhancers, and interpretable AI.",
     "selected_work": ["ankrd11", "line1-review", "line1"]
