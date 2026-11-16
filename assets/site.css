@@ -106,11 +106,21 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 .email-copy{appearance:none;background:transparent;border:0;border-radius:0;color:var(--accent);font:400 .8125rem/1.8 var(--mono);padding:10px 0;text-decoration:underline dotted;text-underline-offset:3px}
 .email-copy:hover{text-decoration-style:solid}
 .publication-keywords{margin-top:18px;font-size:.875rem;line-height:1.9;color:var(--muted)}
-.keywords-label{display:block;margin-bottom:5px;font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.keywords-label,.highlights-label{display:block;margin-bottom:5px;font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .publication-keywords ul{display:block;list-style:none;margin:0;padding:0}
 .publication-keywords li{display:inline;white-space:nowrap}
 /* Keywords never split internally; lines may only wrap at the separators. */
 .publication-keywords li+li::before{content:" · ";color:var(--muted);white-space:normal}
+/* Commentary on a paper by other authors: one line per article, linked by journal and type. */
+.highlights{margin-top:16px;font-size:.875rem;line-height:1.75;color:var(--muted)}
+.highlights ul{list-style:none}
+.highlights li+li{margin-top:5px}
+.highlights li a{color:var(--ink);font-weight:500;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
+.highlights li a:hover{text-decoration-color:var(--accent)}
+/* A long line wraps before the article type or the reference, never inside them. */
+.nowrap,.highlight-kind,.highlight-reference{white-space:nowrap}
+.highlight-detail{display:block}
+.highlights li:has(.highlight-detail)+li{margin-top:9px}
 .site-footer{max-width:1120px;margin:0 auto;padding:24px 0 32px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;color:var(--muted);font-size:.8125rem}
 
 /* A: a familiar academic page with a permanent profile column */
@@ -415,7 +425,7 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
 @media print{
  @page{size:A4;margin:16mm}
  body,.cv-page,.notebook.cv-page{font-size:10pt;line-height:1.55;background:#fff;color:#000}
- .site-header,.site-footer,.print-button,.skip-link,.email-link,.email-copy{display:none}
+ .site-header,.site-footer,.print-button,.skip-link,.email-link,.email-copy,.link-arrow{display:none}
  .cv-main{margin:0;max-width:none}
  .cv-heading h1{font-size:30pt}
  .cv-heading p:not(.eyebrow){font-size:10pt}
@@ -429,6 +439,14 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
  .social-links{gap:18px}
  .social-links a{font-size:9pt}
  a,.notebook.cv-page a{color:#000}
+ /* Labelled rows save lines on paper: the label sits beside its content, and each highlight
+    runs on as one reference. */
+ .cv-page .cv-main :is(.highlights,.publication-keywords){display:grid;grid-template-columns:76pt minmax(0,1fr);column-gap:8pt;align-items:baseline;margin-top:7pt;line-height:1.55}
+ .cv-page .cv-main :is(.highlights-label,.keywords-label){margin:0;line-height:inherit}
+ .highlights li a{text-decoration:none}
+ .highlights li+li,.highlights li:has(.highlight-detail)+li{margin-top:2pt}
+ .highlight-detail{display:inline}
+ .highlight-detail::before{content:" — "}
  .timeline li,.cv-records li{break-inside:avoid}
  .timeline li{margin-bottom:14px}
  .cv-records li{margin-bottom:9px}
@@ -439,7 +457,7 @@ details p{margin:12px 0 0;max-width:760px;line-height:1.75}
  .cv-page .reviewing-role{font-size:9pt;break-after:avoid}
  .cv-page .reviewing-group+.reviewing-group,.cv-page .outreach-note{margin-top:12pt}
  /* Print keeps its own point sizes; these selectors outrank the larger screen sizes in editorial.css. */
- .cv-page .cv-main :is(.eyebrow,.timeline-date,.paper-year,.secondary,.contribution-note,.publication-keywords,.keywords-label,.journal,.author-note,.email-fallback),.cv-page .cv-main .cv-records li>span,.cv-page .cv-main .social-links a{font-size:9pt}
+ .cv-page .cv-main :is(.eyebrow,.timeline-date,.paper-year,.secondary,.contribution-note,.publication-keywords,.keywords-label,.highlights,.highlights-label,.journal,.author-note,.email-fallback),.cv-page .cv-main .cv-records li>span,.cv-page .cv-main .social-links a{font-size:9pt}
  .cv-page .cv-main .timeline h4{font-size:10.5pt}
  .cv-page .cv-main .outreach-note{font-size:10pt}
 }

@@ -30,7 +30,7 @@ def _svg(theme, title, description, drawing):
 def _panel(theme, topic, drawing, controls, caption, note, source=None, source_label='', selected=False):
     hidden = '' if selected else ' hidden'
     link = (f'<a class="locus-source" href="{source}">{escape(source_label)} '
-            f'<span aria-hidden="true">↗</span></a>') if source else ''
+            f'<span aria-hidden="true">↓</span></a>') if source else ''
     return f'''<div id="lens-{theme}" class="lens-panel" role="tabpanel"
       aria-labelledby="tab-{theme}"{hidden}>
       {drawing}

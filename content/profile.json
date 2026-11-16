@@ -2,7 +2,7 @@
   "name": "Xiufeng Li",
   "chinese_name": "李秀峰",
   "pronunciation": "Show Phone Lee",
-  "portrait": "xiufeng-li.png",
+  "portrait": "xiufeng-li.jpg",
   "share_image": "share-card.png",
   "share_image_alt": "Xiufeng Li · 李秀峰. How does a gene’s neighborhood shape its expression? Gene regulation, LINE-1 and interpretable AI.",
   "initials": "XL",
@@ -11,7 +11,7 @@
   "supervisor": "Dr. Stein Aerts",
   "theme": "editorial",
   "site_url": "https://assumeassume.github.io",
-  "updated": "2026-10-05",
+  "updated": "2026-11-16",
   "description": "Xiufeng Li studies gene regulation, transposable elements and chromatin architecture, connecting mechanistic regulatory genomics with interpretable AI.",
   "intro": "I study how regulatory elements and chromatin architecture shape gene expression. My work brings together computational genomics and mechanistic biology to understand the regulatory logic of the genome.",
   "about": [
@@ -26,11 +26,7 @@
     "intro": "I study gene regulation—from LINE-1 and chromatin to interpretable AI.",
     "byline": "Postdoctoral fellow in the Aerts lab · Leuven, Belgium",
     "about_intro": "I’m currently a postdoctoral fellow jointly affiliated with the **VIB Center for AI & Computational Biology and KU Leuven**, working with [Dr. Stein Aerts](https://aertslab.org/) on gene regulation, enhancers, and interpretable AI.",
-    "selected_work": [
-      {"publication": "line1", "title": "When mobile DNA talks to distant genes", "question": "Can a transposable element influence genes at a distance?"},
-      {"publication": "line1-review", "title": "A wider view of LINE-1", "question": "How is LINE-1 regulated, and what does it do in the human genome?"},
-      {"publication": "ankrd11", "title": "Keeping hypertranscription in check", "question": "How do highly active genes stay under control?"}
-    ]
+    "selected_work": ["ankrd11", "line1-review", "line1"]
   },
   "email": {"user": "bHhmMDA3MDA3", "domain": "Z21haWwuY29t"},
   "visits": {
@@ -39,6 +35,7 @@
     "privacy": "IP addresses are stored only in masked form (such as 203.0.113.*), used solely for visit statistics, and deleted after 30 days."
   },
   "links": [
+    {"label": "Google Scholar", "url": "https://scholar.google.com/citations?user=QY8LkLIAAAAJ&hl=en"},
     {"label": "ORCID", "url": "https://orcid.org/0000-0003-4266-6858"},
     {"label": "GitHub", "url": "https://github.com/AssumeAssume"},
     {"label": "LinkedIn", "url": "https://www.linkedin.com/in/xiufeng-li-68822014b/"}
@@ -67,9 +64,11 @@
     }
   ],
   "news": [
+    {"date": "Nov 2026", "text": "Our ANKRD11 study was highlighted in [Nature Structural & Molecular Biology](https://www.nature.com/articles/s41594-026-01926-0) and [Science Bulletin](https://doi.org/10.1016/j.scib.2026.11.017).", "url": ""},
     {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts.", "url": ""},
     {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
     {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"},
+    {"date": "Jul 2024", "text": "Our LINE-1 paper was featured in a Nature Genetics News & Views by Yonghao Liang and Ting Wang.", "url": "https://www.nature.com/articles/s41588-024-01824-5"},
     {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in Nature Genetics!", "url": "https://www.nature.com/articles/s41588-024-01789-5"}
   ],
   "publications": [
@@ -80,6 +79,8 @@
       "display_authors": "Tao Zhang*, Xiufeng Li*, Wei Zhou, et al.",
       "journal": "Cell",
       "year": 2026,
+      "volume": "189",
+      "pages": "6442–6459.e9",
       "doi": "10.1016/j.cell.2026.07.006",
       "url": "https://doi.org/10.1016/j.cell.2026.07.006",
       "code": "",
@@ -90,7 +91,27 @@
       "figure": "ankrd11-discovery.svg",
       "figure_alt": "Conceptual mechanism: ANKRD11 condensates restrain excessive transcription at hypertranscribed genes while allowing ongoing gene expression.",
       "figure_caption": "ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
-      "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"]
+      "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"],
+      "highlights": [
+        {
+          "kind": "Research Highlight",
+          "journal": "Nature Structural & Molecular Biology",
+          "title": "Biomolecular condensate safeguards development",
+          "authors": ["Sara Osman"],
+          "year": 2026,
+          "volume": "33",
+          "pages": "1587",
+          "url": "https://www.nature.com/articles/s41594-026-01926-0"
+        },
+        {
+          "kind": "Research Highlight",
+          "journal": "Science Bulletin",
+          "title": "A condensate-based brake on hypertranscription",
+          "authors": ["Xin Li", "Yaoyao Hou", "Biwei Han", "Jian Yan", "Liang Wang"],
+          "year": 2026,
+          "url": "https://doi.org/10.1016/j.scib.2026.11.017"
+        }
+      ]
     },
     {
       "id": "line1-review",
@@ -131,7 +152,19 @@
       "keywords": ["LINE-1 regulation", "3D genomics", "Zygotic genome activation"],
       "figure": "line1-discovery.svg",
       "figure_alt": "Conceptual mechanism: LINE-1 transcription promotes long-range chromatin contacts and distal gene activation.",
-      "figure_caption": "Active LINE-1 elements can help regulate genes at a distance."
+      "figure_caption": "Active LINE-1 elements can help regulate genes at a distance.",
+      "highlights": [
+        {
+          "kind": "News & Views",
+          "journal": "Nature Genetics",
+          "title": "LINE1 mediates long-range DNA interactions",
+          "authors": ["Yonghao Liang", "Ting Wang"],
+          "year": 2024,
+          "volume": "56",
+          "pages": "1328–1330",
+          "url": "https://www.nature.com/articles/s41588-024-01824-5"
+        }
+      ]
     },
     {
       "id": "safb",

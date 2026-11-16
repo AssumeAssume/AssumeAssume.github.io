@@ -73,7 +73,7 @@ def main():
                 errors.append(f"{path.relative_to(ROOT)}: Missing link target {link}")
             elif parsed.fragment and target in pages and unquote(parsed.fragment) not in pages[target].ids:
                 errors.append(f"{path.relative_to(ROOT)}: Missing anchor {link}")
-    allowed = {".html", ".css", ".js", ".svg", ".jpg", ".png", ".bib", ".xml"}
+    allowed = {".html", ".css", ".js", ".svg", ".jpg", ".png", ".bib", ".xml", ".txt"}
     for path in ROOT.rglob("*"):
         if path.is_file() and path.suffix not in allowed and path.name != ".nojekyll":
             errors.append(f"Unexpected public file: {path.relative_to(ROOT)}")
