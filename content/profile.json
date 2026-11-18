@@ -63,11 +63,11 @@
     }
   ],
   "news": [
-    {"date": "Nov 2026", "text": "Our ANKRD11 study was highlighted in [Nature Structural & Molecular Biology](https://www.nature.com/articles/s41594-026-01926-0) and [Science Bulletin](https://doi.org/10.1016/j.scib.2026.11.017)."},
-    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts."},
-    {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in [Cell](https://doi.org/10.1016/j.cell.2026.07.006)."},
-    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of [Trends in Genetics](https://doi.org/10.1016/j.tig.2025.04.011)."},
-    {"date": "Jul 2024", "text": "Our LINE-1 paper was featured in a [Nature Genetics News & Views](https://www.nature.com/articles/s41588-024-01824-5) by Yonghao Liang and Ting Wang."},
+    {"date": "Nov 2026", "text": "Our ANKRD11 study was highlighted in [Nature Structural & Molecular Biology](https://www.nature.com/articles/s41594-026-01926-0) and [Science Bulletin](https://doi.org/10.1016/j.scib.2026.11.017)!"},
+    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts!"},
+    {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in [Cell](https://doi.org/10.1016/j.cell.2026.07.006)!"},
+    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of [Trends in Genetics](https://doi.org/10.1016/j.tig.2025.04.011)!"},
+    {"date": "Jul 2024", "text": "Our LINE-1 paper was featured in a [Nature Genetics News & Views](https://www.nature.com/articles/s41588-024-01824-5) by Yonghao Liang and Ting Wang!"},
     {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in [Nature Genetics](https://www.nature.com/articles/s41588-024-01789-5)!"}
   ],
   "publications": [
