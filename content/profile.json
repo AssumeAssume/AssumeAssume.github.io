@@ -63,12 +63,12 @@
     }
   ],
   "news": [
-    {"date": "Nov 2026", "text": "Our ANKRD11 study was highlighted in [Nature Structural & Molecular Biology](https://www.nature.com/articles/s41594-026-01926-0) and [Science Bulletin](https://doi.org/10.1016/j.scib.2026.11.017).", "url": ""},
-    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts.", "url": ""},
-    {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in Cell.", "url": "https://doi.org/10.1016/j.cell.2026.07.006"},
-    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of Trends in Genetics.", "url": "https://doi.org/10.1016/j.tig.2025.04.011"},
-    {"date": "Jul 2024", "text": "Our LINE-1 paper was featured in a Nature Genetics News & Views by Yonghao Liang and Ting Wang.", "url": "https://www.nature.com/articles/s41588-024-01824-5"},
-    {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in Nature Genetics!", "url": "https://www.nature.com/articles/s41588-024-01789-5"}
+    {"date": "Nov 2026", "text": "Our ANKRD11 study was highlighted in [Nature Structural & Molecular Biology](https://www.nature.com/articles/s41594-026-01926-0) and [Science Bulletin](https://doi.org/10.1016/j.scib.2026.11.017)."},
+    {"date": "Sep 2026", "text": "Joined the VIB Center for AI & Computational Biology and KU Leuven as a postdoctoral fellow with Dr. Stein Aerts."},
+    {"date": "Jul 2026", "text": "Our study of ANKRD11 condensates and hypertranscribed genes was published in [Cell](https://doi.org/10.1016/j.cell.2026.07.006)."},
+    {"date": "Jul 2025", "text": "Our review of LINE-1 regulation and function was featured on the cover of [Trends in Genetics](https://doi.org/10.1016/j.tig.2025.04.011)."},
+    {"date": "Jul 2024", "text": "Our LINE-1 paper was featured in a [Nature Genetics News & Views](https://www.nature.com/articles/s41588-024-01824-5) by Yonghao Liang and Ting Wang."},
+    {"date": "Jun 2024", "text": "Our LINE-1 paper is finally out in [Nature Genetics](https://www.nature.com/articles/s41588-024-01789-5)!"}
   ],
   "publications": [
     {
@@ -88,8 +88,6 @@
       "summary": "ANKRD11 condensates restrain hypertranscribed regions and safeguard transcriptional control during development.",
       "contribution": "I co-conceived the study, led computational and integrative analyses, and developed the hypertranscribed-gene framework.",
       "figure": "ankrd11-discovery.svg",
-      "figure_alt": "Conceptual mechanism: ANKRD11 condensates restrain excessive transcription at hypertranscribed genes while allowing ongoing gene expression.",
-      "figure_caption": "ANKRD11 condensates restrain transcription elongation at hypertranscribed genes, helping safeguard development.",
       "keywords": ["Hypertranscription", "Biomolecular condensates", "Developmental disorders"],
       "highlights": [
         {
@@ -150,8 +148,6 @@
       "contribution": "I led the computational and conceptual development, integrating genomic analyses into the mechanistic framework.",
       "keywords": ["LINE-1 regulation", "3D genomics", "Zygotic genome activation"],
       "figure": "line1-discovery.svg",
-      "figure_alt": "Conceptual mechanism: LINE-1 transcription promotes long-range chromatin contacts and distal gene activation.",
-      "figure_caption": "Active LINE-1 elements can help regulate genes at a distance.",
       "highlights": [
         {
           "kind": "News & Views",

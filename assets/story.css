@@ -1,11 +1,8 @@
-/* A quiet visual summary beside each study's highlights and links. */
-.study-figure{margin:0;max-width:460px}
-.study-figure img{display:block;width:100%;height:auto}
-.study-figure figcaption{margin-top:12px;font-size:.8125rem;line-height:1.8;color:var(--muted);max-width:410px}
+/* A study's drawing beside its highlights and links. */
+.study-figure{margin:0;max-width:460px;container-type:inline-size}
+.study-figure svg{display:block;width:100%;height:auto;overflow:visible}
+/* Labels use the body typeface; the size compensates for SVG scaling, staying near 14 CSS pixels in any column. */
+.study-label{font-family:var(--sans);font-size:clamp(20px,calc(56px - 7.5cqw),32px);font-weight:400;fill:var(--ink)}
 .notebook .social-links .email-link{font-weight:600}
 .about-copy a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px}
 .about-copy a:hover{text-decoration-color:var(--accent)}
-.notebook .publication-keywords{max-width:590px;font-size:.875rem;line-height:1.9}
-@media(max-width:680px){
- .study-figure figcaption{margin-top:10px}
-}
