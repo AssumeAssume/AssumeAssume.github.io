@@ -268,6 +268,17 @@ def publication_highlights(pub, detailed=False):
     return f'<div class="highlights"><span class="highlights-label">Highlighted in</span><ul>{items}</ul></div>' if items else ""
 
 
+def cover_note(pub):
+    """The issue whose cover features a paper, shown where other papers list "Highlighted in"."""
+    cover = pub.get("cover")
+    if not cover:
+        return ""
+    # A number stays with the word before it, so "Issue 7" or "July 2025" never splits across lines.
+    keep = lambda text: re.sub(r" (?=\d)", "&nbsp;", esc(text))
+    issue = f'{esc(pub["journal"])}&nbsp;· {keep(cover["issue"])}&nbsp;· {keep(cover["date"])}'
+    return f'<div class="highlights cover-note"><span class="highlights-label">Featured on the cover</span><p class="cover-issue">{issue}</p><p class="cover-credit">Cover image: {esc(cover["credit"])}</p></div>'
+
+
 def paper_links(pub, prefix, css):
     """Shared Paper / Code / BibTeX actions for every publication listing."""
     url = pub["url"] or ("https://doi.org/" + pub["doi"] if pub["doi"] else "")
@@ -381,8 +392,8 @@ def selected_work(profile, prefix):
     for pub in chosen:
         visual = study_figure(pub['figure']) if pub.get('figure') else ''
         if pub.get('image'):
-            visual += f'<figure class="work-cover"><img src="{prefix}assets/{esc(pub["image"])}" alt="Trends in Genetics July 2025 cover showing a genomic landscape through the Great Wall" width="{COVER_SIZE[0]}" height="{COVER_SIZE[1]}" loading="lazy"><figcaption>July 2025 cover · Cell Press</figcaption></figure>'
-        rows += f'''<article id="pub-{esc(pub['id'])}" class="selected-study"><p class="work-meta"><span class="work-year">{pub['year']}</span><span class="work-journal">{esc(pub['journal'])}</span><span class="work-note">{esc(pub['note'])}</span></p><h3>{external(pub['url'], heading(pub['title']))}</h3><p class="work-authors">{author_line(profile, pub)}</p><div class="study-grid">{visual}<div class="study-result">{publication_highlights(pub)}<div class="work-actions">{paper_links(pub, prefix, 'notebook-link')}</div></div></div></article>'''
+            visual += f'<img class="work-cover" src="{prefix}assets/{esc(pub["image"])}" alt="Trends in Genetics July 2025 cover showing a genomic landscape through the Great Wall" width="{COVER_SIZE[0]}" height="{COVER_SIZE[1]}" loading="lazy">'
+        rows += f'''<article id="pub-{esc(pub['id'])}" class="selected-study"><p class="work-meta"><span class="work-year">{pub['year']}</span><span class="work-journal">{esc(pub['journal'])}</span><span class="work-note">{esc(pub['note'])}</span></p><h3>{external(pub['url'], heading(pub['title']))}</h3><p class="work-authors">{author_line(profile, pub)}</p><div class="study-grid">{visual}<div class="study-result">{publication_highlights(pub)}{cover_note(pub)}<div class="work-actions">{paper_links(pub, prefix, 'notebook-link')}</div></div></div></article>'''
     note = '<span class="section-note">* Equal contribution</span>' if any(pub.get('equal_contribution') for pub in chosen) else ''
     return f'''<section id="research" class="notebook-section selected-work"><div class="notebook-section-heading"><h2>Selected work</h2>{note}</div>{rows}<div id="publications" class="bibliography-link"><a class="notebook-link" href="{prefix}publications/">Complete publication list →</a></div></section>'''
 

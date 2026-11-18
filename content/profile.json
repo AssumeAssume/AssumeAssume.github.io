@@ -128,7 +128,7 @@
       "contribution": "I conceived and wrote the review, synthesized the literature, and developed its conceptual framework and figures.",
       "keywords": ["LINE-1 regulation", "Chromatin organization", "Development"],
       "image": "tig-cover.jpg",
-      "image_credit": "Trends in Genetics · Volume 41, Issue 7 · July 2025 · Cell Press"
+      "cover": {"issue": "Volume 41, Issue 7", "date": "July 2025", "credit": "Cell Press"}
     },
     {
       "id": "line1",

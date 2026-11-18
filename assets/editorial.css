@@ -84,9 +84,10 @@
 .study-grid>.study-result:only-child{grid-column:1 / -1}
 .study-result>:first-child{margin-top:0}
 .work-actions{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px}
-.work-cover{width:100%;max-width:180px}
-.work-cover img{display:block;width:100%;height:auto;border:1px solid var(--line)}
-.work-cover figcaption{font:400 .8125rem/1.8 var(--sans);color:var(--muted);margin-top:10px;white-space:nowrap}
+.work-cover{display:block;width:140px;max-width:100%;height:auto;border:1px solid var(--line)}
+.cover-issue{color:var(--ink);font-weight:500}
+.cover-note p+p{margin-top:2px}
+.cover-credit{font-size:.8125rem}
 .bibliography-link{border-top:1px solid var(--line);padding:22px 0 0}
 /* Contact keeps every link left-aligned in one group on the second column. */
 .notebook-contact{display:grid;grid-template-columns:var(--grid);gap:var(--grid-gap);align-items:start;margin-top:var(--section-gap);border-top:1px solid var(--line);padding:48px 0 56px}
@@ -174,7 +175,6 @@
  .study-grid{display:block;margin-top:22px}
  .study-result{margin-top:22px}
  .work-actions{margin-top:19px;gap:21px}
- .work-cover{max-width:200px}
  .bibliography-link{padding-top:20px}
  .notebook-contact{display:block;padding:36px 0 40px}
  .contact-links{margin-top:21px}
